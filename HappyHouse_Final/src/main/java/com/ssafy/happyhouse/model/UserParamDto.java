@@ -7,7 +7,7 @@ import io.swagger.annotations.ApiModelProperty;
 public class UserParamDto {
 	@ApiModelProperty(value = "현재 페이지 번호")
 	private int pg;
-	@ApiModelProperty(value = "페이지당 글 수")
+	@ApiModelProperty(value = "페이지당 회원 수")
 	private int spp;
 	@ApiModelProperty(value = "입력 X, 자동으로 값 찾아 넣음")
 	private int start;

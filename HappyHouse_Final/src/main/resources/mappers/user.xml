@@ -26,7 +26,7 @@
 	</delete>
 	
 	<select id="login" parameterType="userDto" resultType="userDto">
-		select username
+		select userid
 		from userinfo
 		where userid = #{userid} and password = #{password}
 	</select>

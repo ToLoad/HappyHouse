@@ -1,6 +1,10 @@
 package com.ssafy.happyhouse.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,6 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ssafy.happyhouse.model.UserDto;
 import com.ssafy.happyhouse.model.UserParamDto;
 import com.ssafy.happyhouse.model.WishlistDto;
+import com.ssafy.happyhouse.model.service.JwtServiceImpl;
 import com.ssafy.happyhouse.model.service.UserService;
 
 import io.swagger.annotations.Api;
@@ -35,6 +40,64 @@ public class UserController {
 	
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private JwtServiceImpl jwtService;
+	
+	@ApiOperation(value = "로그인", notes = "Access-token과 로그인 결과 메세지를 반환한다.", response = Map.class)
+	@PostMapping("/login")
+	public ResponseEntity<Map<String, Object>> login(
+			@RequestBody @ApiParam(value = "로그인 시 필요한 회원정보(아이디, 비밀번호).", required = true) UserDto userDto) {
+		Map<String, Object> resultMap = new HashMap<>();
+		HttpStatus status = null;
+		try {
+			UserDto loginUser = userService.login(userDto);
+			if (loginUser != null) {
+				String token = jwtService.create("userid", loginUser.getUserid(), "access-token");
+				logger.debug("로그인 토큰정보 : {}", token);
+				resultMap.put("access-token", token);
+				resultMap.put("message", SUCCESS);
+				status = HttpStatus.ACCEPTED;
+			} else {
+				resultMap.put("message", FAIL);
+				status = HttpStatus.ACCEPTED;
+			}
+		} catch (Exception e) {
+			logger.error("로그인 실패 : {}", e);
+			resultMap.put("message", e.getMessage());
+			status = HttpStatus.INTERNAL_SERVER_ERROR;
+		}
+		return new ResponseEntity<Map<String, Object>>(resultMap, status);
+	}
+	
+	@ApiOperation(value = "회원인증", notes = "회원 정보를 담은 Token을 반환한다.", response = Map.class)
+	@GetMapping("/info/{userid}")
+	public ResponseEntity<Map<String, Object>> getInfo(
+			@PathVariable("userid") @ApiParam(value = "인증할 회원의 아이디.", required = true) String userid,
+			HttpServletRequest request) {
+		logger.debug("userid : {} ", userid);
+		Map<String, Object> resultMap = new HashMap<>();
+		HttpStatus status = HttpStatus.ACCEPTED;
+		logger.info(request.getHeader("access-token"));
+		if (jwtService.isUsable(request.getHeader("access-token"))) {
+			logger.info("사용 가능한 토큰!!!");
+			try {
+//				로그인 사용자 정보.
+				UserDto userDto = userService.getUser(userid);
+				resultMap.put("userInfo", userDto);
+				resultMap.put("message", SUCCESS);
+				status = HttpStatus.ACCEPTED;
+			} catch (Exception e) {
+				logger.error("정보조회 실패 : {}", e);
+				resultMap.put("message", e.getMessage());
+				status = HttpStatus.INTERNAL_SERVER_ERROR;
+			}
+		} else {
+			logger.error("사용 불가능 토큰!!!");
+			resultMap.put("message", FAIL);
+			status = HttpStatus.ACCEPTED;
+		}
+		return new ResponseEntity<Map<String, Object>>(resultMap, status);
+	}
 	
 	@ApiOperation(value = "회원 등록", notes = "새로운 회원을 등록 그리고 DB입력 성공여부에 따라 'success' 또는 'fail' 문자열을 반환한다.", response = String.class)
 	@PostMapping
@@ -48,18 +111,21 @@ public class UserController {
 		return new ResponseEntity<String>(FAIL, HttpStatus.NO_CONTENT);
 	}
 	
-	@ApiOperation(value = "회원 목록", notes = "모든 회원 정보를 반환", response = List.class)
+	@ApiOperation(value = "회원 목록", notes = "모든 회원 정보, 현재 페이지, 페이지당 회원 수, 전체 회원 수를 반환", response = Map.class)
 	@GetMapping
-	public ResponseEntity<List<UserDto>> listUser(@ApiParam(value = "회원 정보를 얻기 위한 부가정보", required = true) UserParamDto userParamDto) throws Exception {
+	public ResponseEntity<Map<String,Object>> listUser(@ApiParam(value = "회원 정보를 얻기 위한 부가정보", required = true) UserParamDto userParamDto) throws Exception {
 		logger.info("listUser - 호출");
-		return new ResponseEntity<List<UserDto>>(userService.listUser(userParamDto), HttpStatus.OK);
-	}
-	
-	@ApiOperation(value = "등록된 회원의 수", notes = "등록된 모든 회원의 수를 반환", response = Integer.class)
-	@GetMapping("/totalcount")
-	public ResponseEntity<Integer> getTotalCount(@ApiParam(value = "회원 정보를 얻기 위한 부가정보", required = true) UserParamDto userParamDto) throws Exception {
-		logger.info("getTotalCount - 호출");
-		return new ResponseEntity<Integer>(userService.getTotalCount(userParamDto), HttpStatus.OK);
+		Map<String, Object> resultMap = new HashMap<>();
+		
+		List<UserDto> list = userService.listUser(userParamDto);
+		int totalCount = userService.getTotalCount(userParamDto);
+
+		resultMap.put("page", userParamDto.getPg());
+		resultMap.put("perPage", userParamDto.getSpp());
+		resultMap.put("totalCount", totalCount);
+		resultMap.put("data", list);
+		
+		return new ResponseEntity<Map<String,Object>>(resultMap, HttpStatus.OK);
 	}
 	
 	@ApiOperation(value = "회원 정보 수정", notes = "회원의 정보를 수정", response = String.class)

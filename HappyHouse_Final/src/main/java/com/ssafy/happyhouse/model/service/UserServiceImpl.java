@@ -39,8 +39,9 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public UserDto login(UserDto userDto) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		if (userDto.getUserid() == null || userDto.getPassword() == null) return null;
+		
+		return sqlSession.getMapper(UserMapper.class).login(userDto);
 	}
 
 	@Override
