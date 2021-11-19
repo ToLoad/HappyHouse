@@ -43,10 +43,10 @@ public class UserController {
 	@Autowired
 	private JwtServiceImpl jwtService;
 	
-	@ApiOperation(value = "로그인", notes = "Access-token과 로그인 결과 메세지를 반환한다.", response = Map.class)
+	@ApiOperation(value = "로그인", notes = "Access-token과 로그인 결과 메세지를 반환한다", response = Map.class)
 	@PostMapping("/login")
 	public ResponseEntity<Map<String, Object>> login(
-			@RequestBody @ApiParam(value = "로그인 시 필요한 회원정보(아이디, 비밀번호).", required = true) UserDto userDto) {
+			@RequestBody @ApiParam(value = "로그인 시 필요한 회원정보(아이디, 비밀번호)", required = true) UserDto userDto) {
 		Map<String, Object> resultMap = new HashMap<>();
 		HttpStatus status = null;
 		try {
@@ -69,10 +69,10 @@ public class UserController {
 		return new ResponseEntity<Map<String, Object>>(resultMap, status);
 	}
 	
-	@ApiOperation(value = "회원인증", notes = "회원 정보를 담은 Token을 반환한다.", response = Map.class)
+	@ApiOperation(value = "회원인증", notes = "회원 정보를 담은 Token을 반환한다", response = Map.class)
 	@GetMapping("/info/{userid}")
 	public ResponseEntity<Map<String, Object>> getInfo(
-			@PathVariable("userid") @ApiParam(value = "인증할 회원의 아이디.", required = true) String userid,
+			@PathVariable("userid") @ApiParam(value = "인증할 회원의 아이디", required = true) String userid,
 			HttpServletRequest request) {
 		logger.debug("userid : {} ", userid);
 		Map<String, Object> resultMap = new HashMap<>();

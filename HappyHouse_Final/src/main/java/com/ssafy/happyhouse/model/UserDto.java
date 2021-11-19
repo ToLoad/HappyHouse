@@ -15,11 +15,11 @@ public class UserDto {
 	private String email;
 	@ApiModelProperty(value = "전화번호")
 	private String phone_num;
-	@ApiModelProperty(value = "찜한 목록의 평균 가격")
+	@ApiModelProperty(value = "찜한 목록의 평균 가격", example = "1")
 	private int avg_price;
-	@ApiModelProperty(value = "찜한 목록의 평균 크기")
-	private int avg_size;
-	@ApiModelProperty(value = "찜한 목록의 평균 층수")
+	@ApiModelProperty(value = "찜한 목록의 평균 크기", example = "12.32")
+	private double avg_size;
+	@ApiModelProperty(value = "찜한 목록의 평균 층수", example = "1")
 	private int avg_floor;
 	@ApiModelProperty(value = "가입 날짜")
 	private String join_date;
@@ -60,10 +60,10 @@ public class UserDto {
 	public void setAvg_price(int avg_price) {
 		this.avg_price = avg_price;
 	}
-	public int getAvg_size() {
+	public double getAvg_size() {
 		return avg_size;
 	}
-	public void setAvg_size(int avg_size) {
+	public void setAvg_size(double avg_size) {
 		this.avg_size = avg_size;
 	}
 	public int getAvg_floor() {
