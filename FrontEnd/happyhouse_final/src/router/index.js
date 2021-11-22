@@ -8,6 +8,8 @@ import MemberLogin from "@/components/user/MemberLogin.vue";
 import MyPage from "@/components/user/MyPage.vue";
 import MyPageUpdate from "@/components/user/MyPageUpdate.vue";
 
+import House from "@/views/House.vue";
+
 Vue.use(VueRouter);
 
 const routes = [
@@ -42,6 +44,11 @@ const routes = [
         component: MyPageUpdate,
       },
     ],
+  },
+  {
+    path: "/house",
+    name: "House",
+    component: House,
   },
 ];
 
