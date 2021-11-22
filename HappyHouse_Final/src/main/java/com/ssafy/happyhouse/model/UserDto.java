@@ -3,7 +3,7 @@ package com.ssafy.happyhouse.model;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
-@ApiModel(value = "회원 정보")
+@ApiModel(value = "UserDto : 회원 정보")
 public class UserDto {
 	@ApiModelProperty(value = "아이디")
 	private String userid;

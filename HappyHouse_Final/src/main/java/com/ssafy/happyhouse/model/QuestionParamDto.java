@@ -3,11 +3,11 @@ package com.ssafy.happyhouse.model;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
-@ApiModel(value = "UserParamDto : 회원정보 파라미터 정보", description = "회원 목록을 얻기위한 부가적인 파라미터정보")
-public class UserParamDto {
+@ApiModel(value = "QuestionParamDto : 질문게시판 파라미터 정보", description = "질문 목록을 얻기위한 부가적인 파라미터정보")
+public class QuestionParamDto {
 	@ApiModelProperty(value = "현재 페이지 번호", example = "1")
 	private int pg;
-	@ApiModelProperty(value = "페이지당 회원 수", example = "10")
+	@ApiModelProperty(value = "페이지당 질문 수", example = "10")
 	private int spp;
 	@ApiModelProperty(value = "입력 X, 자동으로 값 찾아 넣음", example = "")
 	private int start;
@@ -16,7 +16,7 @@ public class UserParamDto {
 	@ApiModelProperty(value = "검색어")
 	private String word;
 	
-	public UserParamDto() {
+	public QuestionParamDto() {
 		pg = 1;
 		spp = 10;
 	}

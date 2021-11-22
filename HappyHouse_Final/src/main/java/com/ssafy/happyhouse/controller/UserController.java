@@ -113,7 +113,7 @@ public class UserController {
 	
 	@ApiOperation(value = "회원 목록", notes = "모든 회원 정보, 현재 페이지, 페이지당 회원 수, 전체 회원 수를 반환", response = Map.class)
 	@GetMapping
-	public ResponseEntity<Map<String,Object>> listUser(@ApiParam(value = "회원 정보를 얻기 위한 부가정보", required = true) UserParamDto userParamDto) throws Exception {
+	public ResponseEntity<Map<String, Object>> listUser(@ApiParam(value = "회원 정보를 얻기 위한 부가정보", required = true) UserParamDto userParamDto) throws Exception {
 		logger.info("listUser - 호출");
 		Map<String, Object> resultMap = new HashMap<>();
 		
