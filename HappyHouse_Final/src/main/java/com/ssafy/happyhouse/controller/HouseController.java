@@ -64,4 +64,11 @@ public class HouseController {
 		logger.info("getAptInfo - 호출");
 		return new ResponseEntity<HouseInfoDto>(houseService.getApt(no), HttpStatus.OK);
 	}
+	
+	@ApiOperation(value = "회원별 추천 아파트", notes = "해당 아이디의 회원에게 맞는 5개의 추천 아파트 반환", response = List.class)
+	@GetMapping("/recommend/{userid}")
+	public ResponseEntity<List<HouseInfoDto>> getRecommendList(@PathVariable("userid")  @ApiParam(value = "회원 아이디", required = true) String userid) throws Exception {
+		logger.info("getRecommendList - 호출");
+		return new ResponseEntity<List<HouseInfoDto>>(houseService.getRecommendList(userid), HttpStatus.OK);
+	}
 }

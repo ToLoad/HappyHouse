@@ -8,7 +8,9 @@ import org.springframework.stereotype.Service;
 
 import com.ssafy.happyhouse.model.HouseInfoDto;
 import com.ssafy.happyhouse.model.SidoGugunCodeDto;
+import com.ssafy.happyhouse.model.UserDto;
 import com.ssafy.happyhouse.model.mapper.HouseMapper;
+import com.ssafy.happyhouse.model.mapper.UserMapper;
 
 @Service
 public class HouseServiceImpl implements HouseService {
@@ -39,6 +41,12 @@ public class HouseServiceImpl implements HouseService {
 	@Override
 	public HouseInfoDto getApt(int no) throws Exception {
 		return sqlSession.getMapper(HouseMapper.class).getApt(no);
+	}
+
+	@Override
+	public List<HouseInfoDto> getRecommendList(String userid) throws Exception {
+		UserDto userDto = sqlSession.getMapper(UserMapper.class).getUser(userid);
+		return sqlSession.getMapper(HouseMapper.class).getRecommendList(userDto);
 	}
 
 }

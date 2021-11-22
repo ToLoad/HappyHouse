@@ -50,6 +50,24 @@
 		on left(h.dongcode,5) = left(gu.guguncode,5)
 		where d.no = #{no}
 	</select>
+	
+	<select id="getRecommendList" parameterType="userDto" resultType="houseInfoDto">
+		select d.no, h.aptCode, h.aptName, h.buildyear, h.dongCode, h.dongName, h.jibun, h.lat, h.lng, si.sidoname, gu.gugunname,
+		replace(d.dealAmount, ' ', '') as recentPrice, d.dealYear, d.dealMonth, d.dealDay, d.area, d.floor, h.img
+		from housedeal d
+        left join houseinfo h
+        on d.aptCode = h.aptCode
+		left join sidocode si
+		on left(h.dongcode,2) = left(si.sidocode,2)
+		left join guguncode gu
+		on left(h.dongcode,5) = left(gu.guguncode,5)
+		<if test="avg_floor != 0">
+			where cast(d.area as unsigned) between #{avg_size} - 15 and #{avg_size} + 15 
+		    and cast(d.floor as unsigned) between #{avg_floor} - 5 and #{avg_floor} + 5
+			having cast(replace(recentPrice, ',', '') as unsigned) between #{avg_price} - 1000 and #{avg_price} + 1000
+		</if>
+		order by rand() limit 5
+	</select>
 
 </mapper>
 
