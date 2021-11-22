@@ -14,10 +14,6 @@ async function update(user, success, fail) {
   await api.put("/user", JSON.stringify(user)).then(success).catch(fail);
 }
 
-async function mypage(user, success, fail) {
-  await api.get("/user/mypage", JSON.stringify(user)).then(success).catch(fail);
-}
-
 async function findById(userid, success, fail) {
   api.defaults.headers["access-token"] = sessionStorage.getItem("access-token");
   await api.get(`/user/info/${userid}`).then(success).catch(fail);
@@ -25,4 +21,4 @@ async function findById(userid, success, fail) {
 
 // function logout(success, fail)
 
-export { login, signup, mypage, findById, update };
+export { login, signup, findById, update };

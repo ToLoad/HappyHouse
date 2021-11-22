@@ -15,7 +15,8 @@
               class="form-control"
               id="userid"
               name="userid"
-              v-model="userid"
+              @click="confirm"
+              v-model="user.userid"
               readonly
             />
           </td>
@@ -28,7 +29,8 @@
               class="form-control"
               id="username"
               name="username"
-              v-model="username"
+              @click="confirm"
+              v-model="user.username"
             />
           </td>
         </tr>
@@ -40,7 +42,8 @@
               class="form-control"
               id="password"
               name="password"
-              v-model="password"
+              @click="confirm"
+              v-model="user.password"
             />
           </td>
         </tr>
@@ -52,7 +55,8 @@
               class="form-control"
               id="email"
               name="email"
-              v-model="email"
+              @click="confirm"
+              v-model="user.email"
             />
           </td>
         </tr>
@@ -64,19 +68,21 @@
               class="form-control"
               id="phone_num"
               name="phone_num"
-              v-model="phone_num"
+              @click="confirm"
+              v-model="user.phone_num"
             />
           </td>
         </tr>
       </table>
-      <b-button @click="onSubmit" variant="primary" href="#">수정하기</b-button>
-      <b-button variant="success" href="#">찜목록</b-button>
+      <b-button @click="onSubmit" variant="primary" href="#">수정하기</b-button
+      ><br /><br />
+      <router-link :to="{ name: 'Home' }">홈으로</router-link>
     </b-jumbotron>
   </div>
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapState, mapActions } from "vuex";
 import { update } from "@/api/member";
 
 const memberStore = "memberStore";
@@ -84,39 +90,52 @@ export default {
   name: "MyPageUpdate",
   data() {
     return {
-      userid: "",
-      username: "",
-      password: "",
-      email: "",
-      phone_num: "",
+      user: {
+        userid: "",
+        username: "",
+        password: "",
+        email: "",
+        phone_num: "",
+      },
     };
   },
   computed: {
     ...mapGetters(memberStore, ["myPageList"]),
+    ...mapState(memberStore, ["isLogin", "isLoginError"]),
   },
   created() {
-    this.userid = this.myPageList.userid;
-    this.username = this.myPageList.username;
-    this.password = this.myPageList.password;
-    this.email = this.myPageList.email;
-    this.phone_num = this.myPageList.phone_num;
+    this.user.userid = this.myPageList.userid;
+    this.user.username = this.myPageList.username;
+    this.user.password = this.myPageList.password;
+    this.user.email = this.myPageList.email;
+    this.user.phone_num = this.myPageList.phone_num;
   },
   methods: {
+    ...mapActions(memberStore, ["userConfirm", "getUserInfo"]),
+    async confirm() {
+      await this.userConfirm(this.user);
+      let token = sessionStorage.getItem("access-token");
+      if (this.isLogin) {
+        await this.getUserInfo(token);
+        console.log(this.myPageList);
+      }
+    },
     onSubmit() {
       update(
         {
-          username: this.username,
-          password: this.password,
-          email: this.email,
-          phone_num: this.phone_num,
+          userid: this.user.userid,
+          username: this.user.username,
+          password: this.user.password,
+          email: this.user.email,
+          phone_num: this.user.phone_num,
         },
         ({ data }) => {
           let msg = "수정 처리시 문제가 발생했습니다.";
-          console.log(this.username);
           if (data === "success") {
             msg = "수정이 완료되었습니다.";
           }
           alert(msg);
+          this.confirm();
           this.$router.push({ name: "Home" });
         },
         (error) => {

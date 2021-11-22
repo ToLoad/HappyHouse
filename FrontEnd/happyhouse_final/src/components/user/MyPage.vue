@@ -32,6 +32,8 @@
         <b-button variant="primary">수정하기</b-button>
       </router-link>
       <b-button variant="success" href="#">찜목록</b-button>
+      <br /><br />
+      <router-link :to="{ name: 'Home' }">홈으로</router-link>
     </b-jumbotron>
   </div>
 </template>
