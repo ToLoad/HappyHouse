@@ -52,11 +52,6 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public List<WishlistDto> getWishlist(String userid) throws Exception {
-		return sqlSession.getMapper(UserMapper.class).getWishlist(userid);
-	}
-
-	@Override
 	public int getTotalCount(UserParamDto userParamDto) throws Exception {
 		return sqlSession.getMapper(UserMapper.class).getTotalCount(userParamDto);
 	}

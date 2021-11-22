@@ -22,7 +22,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ssafy.happyhouse.model.UserDto;
 import com.ssafy.happyhouse.model.UserParamDto;
-import com.ssafy.happyhouse.model.WishlistDto;
 import com.ssafy.happyhouse.model.service.JwtServiceImpl;
 import com.ssafy.happyhouse.model.service.UserService;
 
@@ -143,12 +142,4 @@ public class UserController {
 		userService.removeUser(id);
 		return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
 	}
-	
-	@ApiOperation(value = "회원의 찜목록", notes = "회원이 찜한 아파트 번호를 가져옴", response = List.class)
-	@GetMapping("/wishlist/{userid}")
-	public ResponseEntity<List<WishlistDto>> getWishlist(@PathVariable("userid") @ApiParam(value = "찜목록을 조회할 회원아이디", required = true) String userid) throws Exception {
-		logger.info("getWishlist - 호출");
-		return new ResponseEntity<List<WishlistDto>>(userService.getWishlist(userid), HttpStatus.OK);
-	}
-	
 }

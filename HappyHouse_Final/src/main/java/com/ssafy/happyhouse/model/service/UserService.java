@@ -18,7 +18,4 @@ public interface UserService {
 	// 어드민 유저 기능
 	public List<UserDto> listUser(UserParamDto userParamDto) throws Exception;
 	public int getTotalCount(UserParamDto userParamDto) throws Exception;
-
-	// 위시리스트 가져오기
-	public List<WishlistDto> getWishlist(String userid) throws Exception;
 }

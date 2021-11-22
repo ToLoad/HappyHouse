@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.ssafy.happyhouse.model.mapper.WishlistMapper">
+
+	<insert id="registerWishlist" parameterType="wishlistDto">
+		insert into wishlist(userid, apt_no)
+		values (#{userid}, #{apt_no})
+	</insert>	
+	
+	<delete id="removeWishlist" parameterType="wishlistDto">
+		delete from wishlist
+		where userid = #{userid} and apt_no = #{apt_no}
+	</delete>
+	
+	<select id="checkDuplicate" parameterType="wishlistDto" resultType="int">
+		select count(num)
+		from wishlist
+		where userid = #{userid} and apt_no = #{apt_no}
+	</select>
+	
+	<select id="getWishlist" parameterType="string" resultType="wishlistDto">
+		select * from wishlist
+		where userid = #{userid}
+	</select>
+	
+	<select id="getWishlistCount" parameterType="string" resultType="int">
+		select count(num) from wishlist
+		where userid = #{userid}
+	</select>
+	
+</mapper>
+

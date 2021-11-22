@@ -22,7 +22,4 @@ public interface UserMapper {
 	// 어드민 유저 기능
 	public List<UserDto> listUser(UserParamDto userParamDto) throws SQLException;
 	public int getTotalCount(UserParamDto userParamDto) throws SQLException;
-	
-	// 위시리스트 가져오기
-	public List<WishlistDto> getWishlist(String userid) throws SQLException;
 }

@@ -16,7 +16,8 @@
 	
 	<update id="updateUser" parameterType="userDto">
 		update userinfo
-		set password = #{password}, email = #{email}, phone_num = #{phone_num}
+		set username = #{username}, password = #{password}, email = #{email}, phone_num = #{phone_num},
+		avg_price = #{avg_price}, avg_size = #{avg_size}, avg_floor = #{avg_floor}
 		where userid = #{userid}
 	</update>
 	
@@ -45,11 +46,6 @@
 		<if test="word != null and word != ''">
 			where ${key} like concat('%', #{word}, '%')
 		</if>
-	</select>
-	
-	<select id="getWishlist" parameterType="string" resultType="wishlistDto">
-		select * from wishlist
-		where userid = #{userid}
 	</select>
 
 </mapper>
