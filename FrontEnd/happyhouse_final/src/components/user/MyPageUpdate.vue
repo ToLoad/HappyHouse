@@ -74,8 +74,9 @@
           </td>
         </tr>
       </table>
-      <b-button @click="onSubmit" variant="primary" href="#">수정하기</b-button>
-      <b-button variant="success" href="#">찜목록</b-button>
+      <b-button @click="onSubmit" variant="primary" href="#">수정하기</b-button
+      ><br /><br />
+      <router-link :to="{ name: 'Home' }">홈으로</router-link>
     </b-jumbotron>
   </div>
 </template>
