@@ -36,6 +36,7 @@
 		<if test="word != null and word != ''">
 			where ${key} like concat('%', #{word}, '%')
 		</if>
+		limit #{start}, #{spp}
 	</select>
 	
 	<select id="getTotalCount" parameterType="userParamDto" resultType="int">

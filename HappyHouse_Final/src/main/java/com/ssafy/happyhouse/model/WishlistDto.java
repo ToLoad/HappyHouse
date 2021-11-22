@@ -3,7 +3,7 @@ package com.ssafy.happyhouse.model;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
-@ApiModel(value = "회원의 찜목록")
+@ApiModel(value = "WishlistDto : 회원의 찜목록")
 public class WishlistDto {
 	@ApiModelProperty(value = "식별 번호", example = "1")
 	private int num;

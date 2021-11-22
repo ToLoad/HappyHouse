@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.ssafy.happyhouse.model.mapper.QuestionMapper">
+
+	<insert id="registerQuestion" parameterType="questionDto">
+		insert into question(title, content, writer_id, write_time)
+		values (#{title}, #{content}, #{writer_id}, now())
+	</insert>
+	
+	<select id="getQuestion" parameterType="int" resultType="questionDto">
+		select * from question
+		where num = #{num}
+	</select>
+	
+	<select id="listQuestion" parameterType="questionParamDto" resultType="questionDto">
+		select * from question
+		<if test="word != null and word != ''">
+			where ${key} like concat('%', #{word}, '%')
+		</if>
+		limit #{start}, #{spp}
+	</select>
+	
+	<update id="updateQuestion" parameterType="questionDto">
+		update question
+		set title = #{title}, content = #{content}
+		where num = #{num}
+	</update>
+	
+	<delete id="removeQuestion" parameterType="int">
+		delete from question
+		where num = #{num}
+	</delete>
+	
+	<select id="getTotalCount" parameterType="questionParamDto" resultType="int">
+		select count(num)
+		from question
+		<if test="word != null and word != ''">
+			where ${key} like concat('%', #{word}, '%')
+		</if>
+	</select>
+	
+</mapper>
+

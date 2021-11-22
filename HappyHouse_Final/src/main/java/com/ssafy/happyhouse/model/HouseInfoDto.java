@@ -3,7 +3,7 @@ package com.ssafy.happyhouse.model;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
-@ApiModel(value = "아파트정보", description = "아파트의 상세 정보를 나타낸다")
+@ApiModel(value = "HouseInfoDto : 아파트정보", description = "아파트의 상세 정보를 나타낸다")
 public class HouseInfoDto {
 
 	@ApiModelProperty(value = "아파트일련번호", example = "1")

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.ssafy.happyhouse.model.mapper.NoticeMapper">
+
+	<insert id="registerNotice" parameterType="noticeDto">
+		insert into notice(title, content, writer_id, write_time)
+		values (#{title}, #{content}, #{writer_id}, now())
+	</insert>
+	
+	<select id="getNotice" parameterType="int" resultType="noticeDto">
+		select * from notice
+		where num = #{num}
+	</select>
+	
+	<select id="listNotice" parameterType="noticeParamDto" resultType="noticeDto">
+		select * from notice
+		<if test="word != null and word != ''">
+			where ${key} like concat('%', #{word}, '%')
+		</if>
+		limit #{start}, #{spp}
+	</select>
+	
+	<update id="updateNotice" parameterType="noticeDto">
+		update notice
+		set title = #{title}, content = #{content}
+		where num = #{num}
+	</update>
+	
+	<delete id="removeNotice" parameterType="int">
+		delete from notice
+		where num = #{num}
+	</delete>
+	
+	<select id="getTotalCount" parameterType="noticeParamDto" resultType="int">
+		select count(num)
+		from notice
+		<if test="word != null and word != ''">
+			where ${key} like concat('%', #{word}, '%')
+		</if>
+	</select>
+	
+</mapper>
+
