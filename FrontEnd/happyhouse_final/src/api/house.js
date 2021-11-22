@@ -11,8 +11,12 @@ function gugunList(params, success, fail) {
   api.get(`/house/gugun`, { params: params }).then(success).catch(fail);
 }
 
+function dongList(params, success, fail) {
+  api.get(`/house/dong`, { params: params }).then(success).catch(fail);
+}
+
 function houseList(params, success, fail) {
   house.get(`/house/apt`, { params: params }).then(success).catch(fail);
 }
 
-export { sidoList, gugunList, houseList };
+export { sidoList, gugunList, houseList, dongList };
