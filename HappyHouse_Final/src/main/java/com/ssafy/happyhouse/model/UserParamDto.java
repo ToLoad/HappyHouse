@@ -5,11 +5,11 @@ import io.swagger.annotations.ApiModelProperty;
 
 @ApiModel(value = "회원정보 파라미터 정보", description = "회원 목록을 얻기위한 부가적인 파라미터정보")
 public class UserParamDto {
-	@ApiModelProperty(value = "현재 페이지 번호")
+	@ApiModelProperty(value = "현재 페이지 번호", example = "1")
 	private int pg;
-	@ApiModelProperty(value = "페이지당 회원 수")
+	@ApiModelProperty(value = "페이지당 회원 수", example = "1")
 	private int spp;
-	@ApiModelProperty(value = "입력 X, 자동으로 값 찾아 넣음")
+	@ApiModelProperty(value = "입력 X, 자동으로 값 찾아 넣음", example = "1")
 	private int start;
 	@ApiModelProperty(value = "검색 조건")
 	private String key;
