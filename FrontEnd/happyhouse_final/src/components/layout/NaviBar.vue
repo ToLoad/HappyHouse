@@ -19,7 +19,7 @@
             ></b-nav-item
           >
           <b-nav-item href="#"
-            ><router-link :to="{ name: 'Instargram' }" class="link"
+            ><router-link :to="{ name: 'QuestionList' }" class="link"
               ><b-icon icon="question-octagon-fill" font-scale="1"></b-icon>
               Q&A</router-link
             ></b-nav-item

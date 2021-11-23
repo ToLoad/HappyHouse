@@ -16,6 +16,12 @@ import NoticeView from "@/components/notice/NoticeView.vue";
 import NoticeWrite from "@/components/notice/NoticeWrite.vue";
 import NoticeUpdate from "@/components/notice/NoticeUpdate.vue";
 
+import QnA from "@/views/QnA.vue";
+import QuestionList from "@/components/QnA/QuestionList.vue";
+import QuestionWrite from "@/components/QnA/QuestionWrite.vue";
+import QuestionView from "@/components/QnA/QuestionView.vue";
+import QuestionUpdate from "@/components/QnA/QuestionUpdate.vue";
+
 Vue.use(VueRouter);
 
 const routes = [
@@ -80,6 +86,33 @@ const routes = [
         path: "noticeupdate",
         name: "NoticeUpdate",
         component: NoticeUpdate,
+      },
+    ],
+  },
+  {
+    path: "/qna",
+    name: "QnA",
+    component: QnA,
+    children: [
+      {
+        path: "qnalist",
+        name: "QuestionList",
+        component: QuestionList,
+      },
+      {
+        path: "qnawrite",
+        name: "QuestionWrite",
+        component: QuestionWrite,
+      },
+      {
+        path: "qnaupdate",
+        name: "QuestionUpdate",
+        component: QuestionUpdate,
+      },
+      {
+        path: "qnaview/:num",
+        name: "QuestionView",
+        component: QuestionView,
       },
     ],
   },
