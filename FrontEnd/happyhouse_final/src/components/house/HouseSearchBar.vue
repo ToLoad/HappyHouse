@@ -36,6 +36,7 @@ export default {
       sidoCode: null,
       gugunCode: null,
       dongCode: null,
+      map: null,
     };
   },
   computed: {
@@ -60,7 +61,6 @@ export default {
       "CLEAR_HOUSE_LIST",
     ]),
     gugunList() {
-      // console.log(this.sidoCode);
       this.CLEAR_GUGUN_LIST();
       this.gugunCode = null;
       if (this.sidoCode) this.getGugun(this.sidoCode);
