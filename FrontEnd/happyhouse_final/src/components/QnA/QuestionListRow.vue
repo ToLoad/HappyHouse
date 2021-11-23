@@ -2,9 +2,10 @@
   <b-tr>
     <b-td>{{ num }}</b-td>
     <b-th class="text-left">
-      <router-link :to="{ name: 'QuestionView', params: { num: num } }">{{
-        title
-      }}</router-link>
+      <router-link
+        :to="{ name: 'QuestionView', params: { num: num, question_num: num } }"
+        >{{ title }}</router-link
+      >
     </b-th>
     <b-td>{{ content }}</b-td>
     <b-td>{{ writer_id }}</b-td>

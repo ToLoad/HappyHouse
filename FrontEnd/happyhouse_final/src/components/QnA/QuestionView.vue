@@ -48,55 +48,74 @@
     </b-row>
     <br />
     <br />
+    <!-- 답변 -->
     <b-row class="mb-1">
       <b-col>
-        <table class="table table-bordered">
-          <tr>
-            <td>
-              {{ answers.writer_id }}
-            </td>
-            <td colspan="2">
-              {{ answers.content }}
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <input
-                type="text"
-                v-model="writer_id"
-                id="write_id"
-                name="writer_id"
-                placeholder="아이디입력"
-              />
-            </td>
-            <td>
-              <input
-                type="text"
-                v-model="content"
-                id="content"
-                name="content"
-                placeholder="내용입력"
-              />
-            </td>
-            <td>
-              <button>답변등록</button>
-            </td>
-          </tr>
-        </table>
+        <div class="accordion" role="tablist">
+          <b-card no-body class="mb-1">
+            <b-card-header header-tag="header" class="p-1" role="tab">
+              <b-button block v-b-toggle.accordion-1 variant="info"
+                >답변</b-button
+              >
+            </b-card-header>
+            <b-collapse
+              id="accordion-1"
+              visible
+              accordion="my-accordion"
+              role="tabpanel"
+            >
+              <b-card-body>
+                <b-card-text
+                  ><table class="table table-bordered">
+                    <tr v-for="(answer, index) in answers" :key="index">
+                      <td>{{ answer.writer_id }} 님</td>
+                      <td v-text="answer.content"></td>
+                      <td
+                        v-if="
+                          myPageList.userid === answer.writer_id ||
+                          myPageList.userid === 'admin'
+                        "
+                      >
+                        <div
+                          type="button"
+                          @click="removeAnswer(answer.num)"
+                          style="font-size: small; color: black"
+                        >
+                          삭제
+                        </div>
+                      </td>
+                    </tr>
+                  </table></b-card-text
+                >
+              </b-card-body>
+            </b-collapse>
+          </b-card>
+        </div>
+        <answer-write />
       </b-col>
     </b-row>
   </b-container>
 </template>
 
 <script>
-import { getQuestion, deleteQuestion, getAnswer } from "@/api/qna";
+import {
+  getQuestion,
+  deleteQuestion,
+  listAnswer,
+  deleteAnswer,
+} from "@/api/qna";
 import { mapGetters } from "vuex";
+import AnswerWrite from "./answer/AnswerWrite.vue";
 const memberStore = "memberStore";
+
 export default {
+  components: {
+    AnswerWrite,
+  },
   data() {
     return {
       questions: {},
-      answers: {},
+      answers: [],
     };
   },
   computed: {
@@ -106,29 +125,26 @@ export default {
         return this.questions.content.split("\n").join("<br>");
       return "";
     },
-    answermessage() {
-      if (this.answers.content)
-        return this.answers.content.split("\n").join("<br>");
-      return "";
-    },
   },
   created() {
     getQuestion(
       this.$route.params.num,
       (response) => {
         this.questions = response.data;
+        console.log(this.questions);
       },
       (error) => {
-        console.log("삭제시 에러발생!!", error);
+        console.log("getQuestion 에러발생!!", error);
       }
     );
-    getAnswer(
+    listAnswer(
       this.$route.params.num,
       (response) => {
         this.answers = response.data;
+        console.log(this.answers);
       },
       (error) => {
-        console.log("삭제시 에러발생!!", error);
+        console.log("listAnswer 에러발생!!", error);
       }
     );
   },
@@ -146,6 +162,13 @@ export default {
       if (confirm("삭제하시겠습니까?")) {
         deleteQuestion(this.questions.num, () => {
           this.$router.push({ name: "QuestionList" });
+        });
+      }
+    },
+    removeAnswer(num) {
+      if (confirm("삭제하시겠습니까?")) {
+        deleteAnswer(num, () => {
+          this.$router.go(0); //새로고침 reload
         });
       }
     },

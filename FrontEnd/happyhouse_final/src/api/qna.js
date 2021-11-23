@@ -24,8 +24,8 @@ function deleteQuestion(num, success, fail) {
 }
 //--------------
 // 답변전체조회
-function listAnswer(question_num, success, fail) {
-  api.get(`/qna/answer/${question_num}`).then(success).catch(fail);
+function listAnswer(num, success, fail) {
+  api.get(`/qna/answer/list/${num}`).then(success).catch(fail);
 }
 // 답변등록
 function writeAnswer(answer, success, fail) {
