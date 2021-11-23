@@ -43,6 +43,7 @@ export default {
   },
   created() {
     this.CLEAR_SIDO_LIST();
+    this.CLEAR_HOUSE_LIST();
     this.getSido();
   },
   methods: {
@@ -56,6 +57,7 @@ export default {
       "CLEAR_SIDO_LIST",
       "CLEAR_GUGUN_LIST",
       "CLEAR_DONG_LIST",
+      "CLEAR_HOUSE_LIST",
     ]),
     gugunList() {
       // console.log(this.sidoCode);
