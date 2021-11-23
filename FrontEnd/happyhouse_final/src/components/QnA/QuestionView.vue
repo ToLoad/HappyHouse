@@ -55,8 +55,31 @@
             <td>
               {{ answers.writer_id }}
             </td>
-            <td>
+            <td colspan="2">
               {{ answers.content }}
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <input
+                type="text"
+                v-model="writer_id"
+                id="write_id"
+                name="writer_id"
+                placeholder="아이디입력"
+              />
+            </td>
+            <td>
+              <input
+                type="text"
+                v-model="content"
+                id="content"
+                name="content"
+                placeholder="내용입력"
+              />
+            </td>
+            <td>
+              <button>답변등록</button>
             </td>
           </tr>
         </table>
