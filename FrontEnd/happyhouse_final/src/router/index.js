@@ -11,6 +11,10 @@ import MyPageUpdate from "@/components/user/MyPageUpdate.vue";
 import House from "@/views/House.vue";
 
 import Notice from "@/views/Notice.vue";
+import NoticeList from "@/components/notice/NoticeList.vue";
+import NoticeView from "@/components/notice/NoticeView.vue";
+import NoticeWrite from "@/components/notice/NoticeWrite.vue";
+import NoticeUpdate from "@/components/notice/NoticeUpdate.vue";
 
 Vue.use(VueRouter);
 
@@ -56,6 +60,28 @@ const routes = [
     path: "/notice",
     name: "Notice",
     component: Notice,
+    children: [
+      {
+        path: "noticelist",
+        name: "NoticeList",
+        component: NoticeList,
+      },
+      {
+        path: "noticeview/:num",
+        name: "NoticeView",
+        component: NoticeView,
+      },
+      {
+        path: "noticewrite",
+        name: "NoticeWrite",
+        component: NoticeWrite,
+      },
+      {
+        path: "noticeupdate",
+        name: "NoticeUpdate",
+        component: NoticeUpdate,
+      },
+    ],
   },
 ];
 

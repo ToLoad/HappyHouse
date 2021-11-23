@@ -2,11 +2,11 @@
   <b-container class="bv-example-row mt-3">
     <b-row>
       <b-col>
-        <b-alert show><h3>글목록</h3></b-alert>
+        <b-alert show><h3>공지사항</h3></b-alert>
       </b-col>
     </b-row>
     <b-row class="mb-1">
-      <b-col class="text-right">
+      <b-col class="text-right" v-if="myPageList.userid === 'admin'">
         <b-button variant="outline-primary" @click="moveWrite()"
           >글쓰기</b-button
         >
@@ -26,7 +26,7 @@
           </b-thead>
           <tbody>
             <!-- 하위 component인 ListRow에 데이터 전달(props) -->
-            <board-list-row
+            <notice-list-row
               v-for="(article, index) in articles"
               :key="index"
               v-bind="article"
@@ -40,8 +40,10 @@
 </template>
 
 <script>
-import NoticeListRow from "@/components/board/child/NoticeListRow";
+import NoticeListRow from "@/components/notice/NoticeListRow";
 import { listArticle } from "@/api/notice.js";
+import { mapGetters } from "vuex";
+const memberStore = "memberStore";
 
 export default {
   name: "NoticeList",
@@ -52,6 +54,9 @@ export default {
     return {
       articles: [],
     };
+  },
+  computed: {
+    ...mapGetters(memberStore, ["myPageList"]),
   },
   created() {
     let param = {
@@ -64,7 +69,7 @@ export default {
       param,
       (response) => {
         console.log(response);
-        this.articles = response.data;
+        this.articles = response.data.data;
       },
       (error) => {
         console.log(error);
@@ -73,7 +78,7 @@ export default {
   },
   methods: {
     moveWrite() {
-      this.$router.push({ name: "BoardWrite" });
+      this.$router.push({ name: "NoticeWrite" });
     },
   },
 };

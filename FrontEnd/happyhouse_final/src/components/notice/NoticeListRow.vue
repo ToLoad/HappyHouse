@@ -2,9 +2,11 @@
   <b-tr>
     <b-td>{{ num }}</b-td>
     <b-th class="text-left">
-      <router-link :to="{ name: 'NoticeView', params: { num: num } }">{{
-        title
-      }}</router-link>
+      <router-link
+        :to="{ name: 'NoticeView', params: { num: num } }"
+        style="color: #42b983"
+        >{{ title }}</router-link
+      >
     </b-th>
     <b-td>{{ content }}</b-td>
     <b-td>{{ writer_id }}</b-td>

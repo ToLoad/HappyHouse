@@ -13,9 +13,9 @@
             ></b-nav-item
           >
           <b-nav-item href="#"
-            ><router-link :to="{ name: 'Notice' }" class="link"
+            ><router-link :to="{ name: 'NoticeList' }" class="link"
               ><b-icon icon="journal" font-scale="1"></b-icon>
-              게시판</router-link
+              공지사항</router-link
             ></b-nav-item
           >
           <b-nav-item href="#"
