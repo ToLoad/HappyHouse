@@ -40,9 +40,6 @@ export default {
   },
   computed: {
     ...mapState(houseStore, ["sidos", "guguns", "dongs"]),
-    // sidos() {
-    //   return this.$store.state.sidos;
-    // },
   },
   created() {
     this.CLEAR_SIDO_LIST();

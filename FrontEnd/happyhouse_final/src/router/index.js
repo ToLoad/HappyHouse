@@ -10,6 +10,8 @@ import MyPageUpdate from "@/components/user/MyPageUpdate.vue";
 
 import House from "@/views/House.vue";
 
+import Notice from "@/views/Notice.vue";
+
 Vue.use(VueRouter);
 
 const routes = [
@@ -49,6 +51,11 @@ const routes = [
     path: "/house",
     name: "House",
     component: House,
+  },
+  {
+    path: "/notice",
+    name: "Notice",
+    component: Notice,
   },
 ];
 
