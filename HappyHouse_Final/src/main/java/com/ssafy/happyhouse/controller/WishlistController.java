@@ -43,7 +43,7 @@ public class WishlistController {
 	}
 	
 	@ApiOperation(value = "찜목록 삭제", notes = "현재 아파트를 로그인한 유저의 찜목록에서 제거", response = String.class)
-	@DeleteMapping
+	@PostMapping("/remove")
 	public ResponseEntity<String> removeWishlist(@RequestBody @ApiParam(value = "찜 제거를 위해 필요한 정보(userid, apt_no)", required = true)WishlistDto wishlistDto) throws Exception {
 		wishlistService.removeWishlist(wishlistDto);
 		return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
