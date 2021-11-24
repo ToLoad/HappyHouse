@@ -56,4 +56,9 @@ public class UserServiceImpl implements UserService {
 		return sqlSession.getMapper(UserMapper.class).getTotalCount(userParamDto);
 	}
 
+	@Override
+	public UserDto getPassword(UserDto userDto) throws Exception {
+		return sqlSession.getMapper(UserMapper.class).getPassword(userDto);
+	}
+
 }

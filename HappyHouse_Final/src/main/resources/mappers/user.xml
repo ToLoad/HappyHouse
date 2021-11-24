@@ -47,6 +47,11 @@
 			where ${key} like concat('%', #{word}, '%')
 		</if>
 	</select>
+	
+	<select id="getPassword" parameterType="userDto" resultType="userDto">
+		select * from userinfo
+		where userid = #{userid} and username = #{username} and email = #{email}
+	</select>
 
 </mapper>
 
