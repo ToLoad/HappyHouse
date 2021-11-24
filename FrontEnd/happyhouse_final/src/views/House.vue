@@ -1,6 +1,7 @@
 <template>
   <div>
-    <img src="@/assets/house.jpg" alt="해피하우스" />
+    <br /><br /><br />
+    <img src="@/assets/house_service.png" alt="해피하우스" />
     <b-container class="bv-example-row mt-3 text-center">
       <b-row>
         <b-col>

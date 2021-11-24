@@ -2,7 +2,14 @@
   <div>
     <br />
     <hr />
-    <div class="container" v-if="myPageList.userid !== ''">
+    <div
+      v-if="myPageList.userid === undefined || myPageList.userid === ''"
+    ></div>
+    <div
+      class="container"
+      v-else
+      style="font-family: 'twayair'; font-size: 17px"
+    >
       <b-row class="mb-1">
         <b-col>
           <div class="accordion" role="tablist">
@@ -33,7 +40,6 @@
         </b-col>
       </b-row>
     </div>
-    <div v-else>로그인 하쇼</div>
   </div>
 </template>
 
@@ -54,6 +60,9 @@ export default {
   computed: {
     ...mapGetters(memberStore, ["myPageList"]),
   },
+  created() {
+    this.getRecommend();
+  },
   watch: {
     myPageList: function () {
       this.getRecommend();
@@ -61,6 +70,7 @@ export default {
   },
   methods: {
     getRecommend() {
+      console.log(this.myPageList.userid);
       getHouseRecommend(
         this.myPageList.userid,
         (response) => {

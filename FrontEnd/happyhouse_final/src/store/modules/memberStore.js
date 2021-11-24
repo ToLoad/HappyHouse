@@ -19,9 +19,13 @@ const memberStore = {
     myPageList(state) {
       return state.myPageList;
     },
+    isLogin(state) {
+      return state.isLogin;
+    },
   },
   mutations: {
     SET_IS_LOGIN: (state, isLogin) => {
+      if (state.isLogin && !isLogin) state.myPageList.userid = "";
       state.isLogin = isLogin;
     },
     SET_IS_LOGIN_ERROR: (state, isLoginError) => {

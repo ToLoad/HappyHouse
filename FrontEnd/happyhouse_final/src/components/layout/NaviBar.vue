@@ -62,9 +62,6 @@
                 font-family: 'SDSamliphopangche_Outline';
                 font-size: 17pt;
                 color: floralwhite;
-                :hover {
-                  color: green;
-                }
               "
             >
               아파트정보</router-link
@@ -73,7 +70,9 @@
         </b-navbar-nav>
 
         <b-navbar-nav class="ml-auto" v-if="userInfo">
-          <b-nav-item class="align-self-center"
+          <b-nav-item
+            class="align-self-center"
+            style="font-family: 'twayair'; font-size: 13pt; color: floralwhite"
             ><b-avatar
               variant="primary"
               v-text="userInfo ? userInfo.userid.charAt(0).toUpperCase() : ''"
@@ -85,11 +84,13 @@
             ><router-link
               :to="{ name: 'MyPage' }"
               class="link align-self-center"
+              style="font-family: 'twayair'; font-size: 13pt; color: cadetblue"
               >내정보보기</router-link
             ></b-nav-item
           >
           <b-nav-item
             class="link align-self-center"
+            style="font-family: 'twayair'; font-size: 13pt; color: floralwhite"
             @click.prevent="onClickLogout"
             >로그아웃</b-nav-item
           >
@@ -117,7 +118,7 @@
 </template>
 
 <script>
-import { mapState, mapMutations } from "vuex";
+import { mapState, mapMutations, mapGetters } from "vuex";
 import "@/assets/css/font.css";
 const memberStore = "memberStore";
 
@@ -125,14 +126,19 @@ export default {
   name: "NaviBar",
   computed: {
     ...mapState(memberStore, ["isLogin", "userInfo"]),
+    ...mapState(mapGetters, ["myPageList"]),
   },
   methods: {
     ...mapMutations(memberStore, ["SET_IS_LOGIN", "SET_USER_INFO"]),
     onClickLogout() {
+      console.log("로그아웃");
       this.SET_IS_LOGIN(false);
       this.SET_USER_INFO(null);
       sessionStorage.removeItem("access-token");
-      if (this.$route.path != "/") this.$router.push({ name: "Home" });
+      if (this.$route.path != "/") {
+        this.$router.push({ name: "Home" });
+        this.$router.push({ name: "Home" });
+      }
     },
   },
 };

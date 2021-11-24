@@ -1,31 +1,35 @@
 <template>
   <div>
-    <b-jumbotron>
-      <template #header>My Page</template>
+    <b-jumbotron style="background: oldlace; font-family: 'twayair'">
+      <template #header>
+        <img src="https://img.icons8.com/color-glass/80/000000/flower.png" />
+        마이 페이지
+        <img src="https://img.icons8.com/color-glass/80/000000/flower.png" />
+      </template>
 
       <template #lead> 개인 정보 수정 및 확인 가능합니다. </template>
 
       <hr class="my-4" />
       <table class="table table-bordered">
         <tr>
-          <td style="background: powderblue">아이디</td>
-          <td v-text="myPageList.userid"></td>
+          <td style="background: moccasin">아이디</td>
+          <td v-text="myPageList.userid" style="background: white"></td>
         </tr>
         <tr>
-          <td style="background: powderblue">이름</td>
-          <td v-text="myPageList.username"></td>
+          <td style="background: moccasin">이름</td>
+          <td v-text="myPageList.username" style="background: white"></td>
         </tr>
         <tr>
-          <td style="background: powderblue">비밀번호</td>
-          <td v-text="myPageList.password"></td>
+          <td style="background: moccasin">비밀번호</td>
+          <td v-text="myPageList.password" style="background: white"></td>
         </tr>
         <tr>
-          <td style="background: powderblue">이메일</td>
-          <td v-text="myPageList.email"></td>
+          <td style="background: moccasin">이메일</td>
+          <td v-text="myPageList.email" style="background: white"></td>
         </tr>
         <tr>
-          <td style="background: powderblue">전화번호</td>
-          <td v-text="myPageList.phone_num"></td>
+          <td style="background: moccasin">전화번호</td>
+          <td v-text="myPageList.phone_num" style="background: white"></td>
         </tr>
       </table>
       <router-link :to="{ name: 'MyPageUpdate' }" class="link">
