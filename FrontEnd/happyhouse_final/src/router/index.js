@@ -22,6 +22,9 @@ import QuestionWrite from "@/components/QnA/QuestionWrite.vue";
 import QuestionView from "@/components/QnA/QuestionView.vue";
 import QuestionUpdate from "@/components/QnA/QuestionUpdate.vue";
 
+import WishList from "@/views/WishList.vue";
+import MyWishList from "@/components/wishlist/MyWishList.vue";
+
 import store from "@/store/index.js";
 
 Vue.use(VueRouter);
@@ -38,7 +41,6 @@ const onlyAuthUser = async (to, from, next) => {
     // next({ name: "SignIn" });
     router.push({ name: "SignIn" });
   } else {
-    console.log("로그인 했다.");
     next();
   }
 };
@@ -73,6 +75,20 @@ const routes = [
         name: "MyPageUpdate",
         beforeEnter: onlyAuthUser,
         component: MyPageUpdate,
+      },
+    ],
+  },
+  {
+    path: "/wishlist",
+    name: "WishList",
+    beforeEnter: onlyAuthUser,
+    component: WishList,
+    children: [
+      {
+        path: "mywishlist",
+        name: "MyWishList",
+        beforeEnter: onlyAuthUser,
+        component: MyWishList,
       },
     ],
   },

@@ -105,8 +105,8 @@ import {
   deleteAnswer,
 } from "@/api/qna";
 import { mapGetters } from "vuex";
-import AnswerWrite from "./answer/AnswerWrite.vue";
 const memberStore = "memberStore";
+import AnswerWrite from "./answer/AnswerWrite.vue";
 
 export default {
   components: {

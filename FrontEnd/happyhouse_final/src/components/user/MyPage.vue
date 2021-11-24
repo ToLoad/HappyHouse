@@ -29,9 +29,15 @@
         </tr>
       </table>
       <router-link :to="{ name: 'MyPageUpdate' }" class="link">
-        <b-button variant="primary">수정하기</b-button>
+        <b-button pill variant="success">수정하기</b-button> </router-link
+      >&nbsp;
+      <!-- <b-button pill variant="outline-danger">찜하기</b-button> -->
+      <router-link
+        :to="{ name: 'MyWishList', params: { userid: myPageList.userid } }"
+        class="link"
+      >
+        <b-button variant="danger" pill>찜목록</b-button>
       </router-link>
-      <b-button variant="success" href="#">찜목록</b-button>
       <br /><br />
       <router-link :to="{ name: 'Home' }">홈으로</router-link>
     </b-jumbotron>
