@@ -50,7 +50,11 @@
         >층수 : {{ house.floor }} 층</b-alert
       >
       <div class="text-center">
-        <b-button @click="clickWishlist" pill variant="outline-danger"
+        <b-button
+          @click="clickWishlist"
+          pill
+          :variant="buttonColor"
+          :disabled="isDisabled"
           >찜하기</b-button
         >
       </div>
@@ -61,7 +65,7 @@
 <script>
 import { mapActions } from "vuex";
 import { mapState } from "vuex";
-import { writeWish } from "@/api/wishlist.js";
+import { writeWish, checkWish } from "@/api/wishlist.js";
 
 const houseStore = "houseStore";
 const memberStore = "memberStore";
@@ -71,10 +75,26 @@ export default {
   data() {
     return {
       isColor: false,
+      buttonColor: "outline-danger",
+      isDisabled: false,
     };
   },
   props: {
     house: Object,
+  },
+  created() {
+    checkWish(
+      { userid: this.userInfo.userid, apt_no: this.house.no },
+      (response) => {
+        if (response.data === "yes") {
+          this.buttonColor = "danger";
+          this.isDisabled = true;
+        }
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   },
   computed: {
     ...mapState(memberStore, ["userInfo"]),
@@ -92,8 +112,10 @@ export default {
     clickWishlist() {
       writeWish(
         { userid: this.userInfo.userid, apt_no: this.house.no },
-        (response) => {
-          console.log(response);
+        () => {
+          alert("찜목록에 추가되었습니다.");
+          this.buttonColor = "danger";
+          this.isDisabled = true;
         },
         (error) => {
           console.log(error);
