@@ -1,19 +1,19 @@
 <template>
   <b-row
-    class="m-2"
     @click="selectHouse"
     @mouseover="colorChange(true)"
     @mouseout="colorChange(false)"
     :class="{ 'mouse-over-bgcolor': isColor }"
   >
-    <b-col cols="2" class="text-center align-self-center">
+    <b-col cols="3" class="text-center align-self-center">
       <b-img
-        thumbnail
+        width="60"
+        height="60"
         :src="require(`@/assets/aptimg/${house.img}`)"
         :alt="`${house.img}`"
       ></b-img>
     </b-col>
-    <b-col cols="10" class="align-self-center">
+    <b-col cols="7" class="align-self-center">
       [{{ house.no }}] {{ house.aptName }} {{ house.floor }}층
     </b-col>
     <b-modal

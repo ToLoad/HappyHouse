@@ -8,10 +8,10 @@
         </b-col>
       </b-row>
       <b-row>
-        <b-col cols="6" align="left">
+        <b-col cols="5" align="left">
           <house-list />
         </b-col>
-        <b-col cols="6">
+        <b-col cols="7">
           <house-map />
         </b-col>
       </b-row>
