@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ssafy.happyhouse.model.HouseInfoDto;
 import com.ssafy.happyhouse.model.WishlistDto;
 import com.ssafy.happyhouse.model.service.WishlistService;
 
@@ -57,11 +58,11 @@ public class WishlistController {
 		return new ResponseEntity<String>("no", HttpStatus.OK);	
 	}
 	
-	@ApiOperation(value = "회원의 찜목록", notes = "회원이 찜한 아파트 번호를 가져옴", response = List.class)
+	@ApiOperation(value = "회원의 찜목록", notes = "회원이 찜한 아파트 정보를 가져옴", response = List.class)
 	@GetMapping("/{userid}")
-	public ResponseEntity<List<WishlistDto>> getWishlist(@PathVariable("userid") @ApiParam(value = "찜목록을 조회할 회원아이디", required = true) String userid) throws Exception {
+	public ResponseEntity<List<HouseInfoDto>> getWishlist(@PathVariable("userid") @ApiParam(value = "찜목록을 조회할 회원아이디", required = true) String userid) throws Exception {
 		logger.info("getWishlist - 호출");
-		return new ResponseEntity<List<WishlistDto>>(wishlistService.getWishlist(userid), HttpStatus.OK);
+		return new ResponseEntity<List<HouseInfoDto>>(wishlistService.getWishlist(userid), HttpStatus.OK);
 	}
 	
 	@ApiOperation(value = "회원의 찜목록 개수", notes = "회원이 찜한 아파트 개수를 가져옴", response = Integer.class)

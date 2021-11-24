@@ -47,7 +47,7 @@ public class WishlistServiceImpl implements WishlistService {
 	}
 	
 	@Override
-	public List<WishlistDto> getWishlist(String userid) throws Exception {
+	public List<HouseInfoDto> getWishlist(String userid) throws Exception {
 		return sqlSession.getMapper(WishlistMapper.class).getWishlist(userid);
 	}
 	
