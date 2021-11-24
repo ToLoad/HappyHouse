@@ -19,4 +19,8 @@ function houseList(params, success, fail) {
   house.get(`/house/apt`, { params: params }).then(success).catch(fail);
 }
 
-export { sidoList, gugunList, houseList, dongList };
+function houseRecommend(userid, success, fail) {
+  house.get(`/house/recommend/${userid}`).then(success).catch(fail);
+}
+
+export { sidoList, gugunList, houseList, dongList, houseRecommend };

@@ -5,9 +5,9 @@
       class="bv-example-row mt-3"
     >
       <wish-list-row
-        v-for="(list, index) in mylist"
+        v-for="(house, index) in mylist"
         :key="index"
-        :list="list"
+        :house="house"
       />
     </b-container>
     <b-container v-else class="bv-example-row mt-3">

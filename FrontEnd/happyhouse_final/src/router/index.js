@@ -29,7 +29,6 @@ import store from "@/store/index.js";
 
 Vue.use(VueRouter);
 const onlyAuthUser = async (to, from, next) => {
-  // console.log(store);
   const checkUserInfo = store.getters["memberStore/checkUserInfo"];
   const getUserInfo = store._actions["memberStore/getUserInfo"];
   let token = sessionStorage.getItem("access-token");
@@ -38,7 +37,6 @@ const onlyAuthUser = async (to, from, next) => {
   }
   if (checkUserInfo === null) {
     alert("로그인이 필요한 페이지입니다..");
-    // next({ name: "SignIn" });
     router.push({ name: "SignIn" });
   } else {
     next();

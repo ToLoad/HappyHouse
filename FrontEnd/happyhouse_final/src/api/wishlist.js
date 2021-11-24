@@ -8,7 +8,7 @@ async function writeWish(wish, success, fail) {
 }
 // 찜목록 삭제
 function deleteWish(wish, success, fail) {
-  api.delete(`/wishlist`, JSON.stringify(wish)).then(success).catch(fail);
+  api.post(`/wishlist/remove`, JSON.stringify(wish)).then(success).catch(fail);
 }
 // 회원정보 찜목록
 function getWish(userid, success, fail) {
