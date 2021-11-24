@@ -27,6 +27,8 @@ export default {
       map: null,
       placeOverlay: null,
       contentNode: null,
+      customOverlay: null,
+      customContent: null,
       markers: [],
       currCategory: "",
       ps: null,
@@ -91,9 +93,13 @@ export default {
 
       // 커스텀 오버레이 셋팅
       this.placeOverlay = new kakao.maps.CustomOverlay({ zIndex: 1 });
+      this.customOverlay = new kakao.maps.CustomOverlay({ zIndex: 1 });
       this.contentNode = document.createElement("div");
+      this.customContent = document.createElement("div");
       // 커스텀 오버레이의 컨텐츠 노드에 css class를 추가합니다
       this.contentNode.className = "placeinfo_wrap";
+      this.customContent.className = "aptinfo_wrap";
+
       // 커스텀 오버레이의 컨텐츠 노드에 mousedown, touchstart 이벤트가 발생했을때
       // 지도 객체에 이벤트가 전달되지 않도록 이벤트 핸들러로 kakao.maps.event.preventMap 메소드를 등록합니다
       addEventHandle(
@@ -103,6 +109,16 @@ export default {
       );
       addEventHandle(
         this.contentNode,
+        "touchstart",
+        kakao.maps.event.preventMap
+      );
+      addEventHandle(
+        this.customContent,
+        "mousedown",
+        kakao.maps.event.preventMap
+      );
+      addEventHandle(
+        this.customContent,
         "touchstart",
         kakao.maps.event.preventMap
       );
@@ -116,6 +132,7 @@ export default {
       }
       // 커스텀 오버레이 컨텐츠를 설정합니다
       this.placeOverlay.setContent(this.contentNode);
+      this.customOverlay.setContent(this.customContent);
 
       // 장소 검색 객체를 생성합니다
       this.ps = new kakao.maps.services.Places(this.map);
@@ -130,6 +147,7 @@ export default {
       }
       // 커스텀 오버레이를 숨깁니다
       this.placeOverlay.setMap(null);
+      this.customOverlay.setMap(null);
       // 지도에 표시되고 있는 마커를 제거합니다
       this.removeMarker();
 
@@ -241,30 +259,93 @@ export default {
       }
     },
     makeMarkers() {
-      var bounds = new kakao.maps.LatLngBounds();
+      var bounds = new kakao.maps.LatLngBounds(); // 해당 마커가 모여있는 곳을 보여주기위함
       for (var i = 0; i < this.houses.length; i++) {
         var position = new kakao.maps.LatLng(
           this.houses[i].lat,
           this.houses[i].lng
         );
         bounds.extend(position);
+
+        var imageSrc = require("@/assets/marker/home_marker.png"), // 마커이미지의 주소입니다
+          imageSize = new kakao.maps.Size(30, 30), // 마커이미지의 크기입니다
+          imageOption = { offset: new kakao.maps.Point(8, 50) }; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+
+        // 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
+        var markerImage = new kakao.maps.MarkerImage(
+          imageSrc,
+          imageSize,
+          imageOption
+        );
+
         var marker = new kakao.maps.Marker({
           map: this.map,
           position: position,
           title: this.houses[i].aptName,
-        });
-
-        var infowindow = new kakao.maps.InfoWindow({
-          content:
-            '<div style="width:200px;text-align:center;padding:6px 0;">' +
-            this.houses[i].aptName +
-            "</div>",
-          position: position,
-          removable: true,
+          image: markerImage,
         });
         marker.setMap(this.map);
-        infowindow.open(this.map, marker);
+        (function (marker, house, customContent, customOverlay, map) {
+          kakao.maps.event.addListener(marker, "click", function () {
+            customContent = null;
+            customContent = document.createElement("div");
+            customContent.className = "aptinfo_wrap";
+            customOverlay.setContent(customContent);
+            displayAptInfo(house, customContent, customOverlay, map);
+          });
+        })(
+          marker,
+          this.houses[i],
+          this.customContent,
+          this.customOverlay,
+          this.map
+        );
       }
+      function displayAptInfo(house, customContent, customOverlay, map) {
+        console.log(customContent);
+        var aptinfo = document.createElement("div");
+        aptinfo.className = "aptinfo";
+        var after = document.createElement("div");
+        after.className = "after";
+
+        var title = document.createElement("div");
+        title.className = "title";
+        title.appendChild(document.createTextNode(house.aptName));
+        title.onclick = function () {
+          customOverlay.setMap(null);
+        };
+
+        var address = document.createElement("span");
+        address.appendChild(
+          document.createTextNode(
+            house.sidoName +
+              " " +
+              house.gugunName +
+              " " +
+              house.dongName +
+              " " +
+              house.jibun
+          )
+        );
+
+        var recentprice = document.createElement("span");
+        recentprice.appendChild(
+          document.createTextNode(house.recentPrice + " 만원")
+        );
+
+        aptinfo.appendChild(title);
+        aptinfo.appendChild(address);
+        aptinfo.appendChild(recentprice);
+        customContent.appendChild(aptinfo);
+        customContent.appendChild(after);
+
+        customOverlay.setPosition(new kakao.maps.LatLng(house.lat, house.lng));
+        customOverlay.setMap(map);
+      }
+      // var aptinfo = document.getElementById("aptinfo");
+      // aptinfo.onclick = function () {
+      //   this.customOverlay.setMap(null);
+      // };
       this.map.setBounds(bounds);
     },
   },
@@ -334,6 +415,72 @@ export default {
   color: #0f7833;
 }
 .placeinfo .jibun {
+  color: #999;
+  font-size: 11px;
+  margin-top: 0;
+}
+.aptinfo_wrap {
+  position: absolute;
+  bottom: 28px;
+  left: -150px;
+  width: 300px;
+}
+.aptinfo {
+  position: relative;
+  width: 100%;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  border-bottom: 2px solid #ddd;
+  padding-bottom: 10px;
+  background: #fff;
+}
+.aptinfo:nth-of-type(n) {
+  border: 0;
+  box-shadow: 0px 1px 2px #888;
+}
+.aptinfo_wrap .after {
+  content: "";
+  position: relative;
+  margin-left: -12px;
+  left: 50%;
+  width: 22px;
+  height: 12px;
+  background: url("https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png");
+}
+.aptinfo a,
+.aptinfo a:hover,
+.aptinfo a:active {
+  color: #fff;
+  text-decoration: none;
+}
+.aptinfo a,
+.aptinfo span {
+  display: block;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.aptinfo span {
+  margin: 5px 5px 0 5px;
+  cursor: default;
+  font-size: 13px;
+}
+.aptinfo .title {
+  font-weight: bold;
+  font-size: 14px;
+  border-radius: 6px 6px 0 0;
+  margin: -1px -1px 0 -1px;
+  padding: 10px;
+  color: #fff;
+  background: #5950d9;
+  background: #5950d9
+    url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/arrow_white.png)
+    no-repeat right 14px center;
+}
+.aptinfo .recentprice {
+  color: #0f7833;
+}
+.aptinfo .jibun {
   color: #999;
   font-size: 11px;
   margin-top: 0;
