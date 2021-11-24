@@ -7,7 +7,6 @@ import org.apache.ibatis.annotations.Mapper;
 
 import com.ssafy.happyhouse.model.UserDto;
 import com.ssafy.happyhouse.model.UserParamDto;
-import com.ssafy.happyhouse.model.WishlistDto;
 
 @Mapper
 public interface UserMapper {
@@ -22,4 +21,6 @@ public interface UserMapper {
 	// 어드민 유저 기능
 	public List<UserDto> listUser(UserParamDto userParamDto) throws SQLException;
 	public int getTotalCount(UserParamDto userParamDto) throws SQLException;
+	
+	UserDto getPassword(UserDto userDto) throws SQLException;
 }

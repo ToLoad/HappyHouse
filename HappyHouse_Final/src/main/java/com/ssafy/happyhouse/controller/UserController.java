@@ -142,4 +142,11 @@ public class UserController {
 		userService.removeUser(id);
 		return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
 	}
+	
+	@ApiOperation(value = "비밀번호찾기", notes = "이름, 아이디, 이메일이 일치하면 비밀번호를 반환", response = UserDto.class)
+	@PostMapping("/password")
+	public ResponseEntity<UserDto> getPassword(@RequestBody @ApiParam(value = "userid, username, email 필수", required = true) UserDto userDto) throws Exception {
+		logger.info("getPassword - 호출");
+		return new ResponseEntity<UserDto>(userService.getPassword(userDto), HttpStatus.OK);
+	}
 }
