@@ -54,17 +54,25 @@ export default {
   computed: {
     ...mapGetters(memberStore, ["myPageList"]),
   },
-  created() {
-    getHouseRecommend(
-      this.myPageList.userid,
-      (response) => {
-        this.houses = response.data;
-        console.log(this.houses);
-      },
-      (error) => {
-        console.log("추천 아파트리스트 에러발생!", error);
-      }
-    );
+  watch: {
+    myPageList: function () {
+      this.getRecommend();
+    },
+  },
+  methods: {
+    getRecommend() {
+      getHouseRecommend(
+        this.myPageList.userid,
+        (response) => {
+          console.log(response.data);
+          this.houses = response.data;
+          console.log(this.houses);
+        },
+        (error) => {
+          console.log("추천 아파트리스트 에러발생!", error);
+        }
+      );
+    },
   },
 };
 </script>
