@@ -1,8 +1,7 @@
 <template>
-  <b-container class="bv-example-row mt-3 text-center">
-    <h3 class="underline-hotpink">
-      <b-icon icon="journals"></b-icon> Notice Service
-    </h3>
+  <b-container class="bv-example-row mt-3 text-center"
+    ><br /><br />
+    <img src="@/assets/notice_logo.png" alt="위시리스트" />
     <router-view></router-view>
   </b-container>
 </template>

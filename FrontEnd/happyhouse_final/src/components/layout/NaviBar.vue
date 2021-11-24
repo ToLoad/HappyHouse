@@ -1,32 +1,72 @@
 <template>
-  <div>
+  <div id="temp">
     <b-navbar toggleable="lg" type="dark" variant="dark" fixed="top">
-      <b-navbar-brand href="#"> </b-navbar-brand>
+      <b-navbar-brand href="#">
+        <router-link to="/">
+          <img
+            src="@/assets/happyhouse_logo.png"
+            class="d-inline-block align-middle"
+            width="60px"
+            alt="logo"
+          />
+        </router-link>
+      </b-navbar-brand>
 
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav>
           <b-nav-item href="#"
-            ><router-link :to="{ name: 'Home' }" class="link"
-              ><b-icon icon="house" font-scale="1"></b-icon> HOME</router-link
+            ><router-link
+              :to="{ name: 'Home' }"
+              class="link"
+              style="
+                font-family: 'SDSamliphopangche_Outline';
+                font-size: 17pt;
+                color: floralwhite;
+              "
+              >HOME</router-link
             ></b-nav-item
           >
           <b-nav-item href="#"
-            ><router-link :to="{ name: 'NoticeList' }" class="link"
-              ><b-icon icon="journal" font-scale="1"></b-icon>
+            ><router-link
+              :to="{ name: 'NoticeList' }"
+              class="link"
+              style="
+                font-family: 'SDSamliphopangche_Outline';
+                font-size: 17pt;
+                color: floralwhite;
+              "
+            >
               공지사항</router-link
             ></b-nav-item
           >
           <b-nav-item href="#"
-            ><router-link :to="{ name: 'QuestionList' }" class="link"
-              ><b-icon icon="question-octagon-fill" font-scale="1"></b-icon>
+            ><router-link
+              :to="{ name: 'QuestionList' }"
+              class="link"
+              style="
+                font-family: 'SDSamliphopangche_Outline';
+                font-size: 17pt;
+                color: floralwhite;
+              "
+            >
               Q&A</router-link
             ></b-nav-item
           >
           <b-nav-item href="#"
-            ><router-link :to="{ name: 'House' }" class="link"
-              ><b-icon icon="house-fill" font-scale="1"></b-icon>
+            ><router-link
+              :to="{ name: 'House' }"
+              class="link"
+              style="
+                font-family: 'SDSamliphopangche_Outline';
+                font-size: 17pt;
+                color: floralwhite;
+                :hover {
+                  color: green;
+                }
+              "
+            >
               아파트정보</router-link
             ></b-nav-item
           >
@@ -38,7 +78,7 @@
               variant="primary"
               v-text="userInfo ? userInfo.userid.charAt(0).toUpperCase() : ''"
             ></b-avatar
-            >{{ userInfo.username }}({{ userInfo.userid }})님
+            >&nbsp; {{ userInfo.username }}({{ userInfo.userid }})님
             환영합니다.</b-nav-item
           >
           <b-nav-item class="align-self-center"
@@ -78,7 +118,7 @@
 
 <script>
 import { mapState, mapMutations } from "vuex";
-
+import "@/assets/css/font.css";
 const memberStore = "memberStore";
 
 export default {
