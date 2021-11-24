@@ -37,9 +37,12 @@ const houseStore = {
     CLEAR_DONG_LIST: (state) => {
       state.dongs = [{ value: null, text: "선택하세요" }];
     },
+    CLEAR_HOUSE_LIST: (state) => {
+      state.houses = [];
+    },
     SET_HOUSE_LIST: (state, houses) => {
-      console.log("houses");
-      console.log(houses);
+      // console.log("houses");
+      // console.log(houses);
       state.houses = houses;
     },
     SET_DETAIL_HOUSE: (state, house) => {
@@ -88,13 +91,15 @@ const houseStore = {
       );
     },
     //----------------
-    getHouseList: ({ commit }, dong) => {
+    getHouseList: ({ commit }, dongCode) => {
+      const params = {
+        dong: dongCode,
+      };
       houseList(
-        dong,
+        params,
         (response) => {
-          console.log(response);
-          //   console.log(response.data.response.body.items.item);
-          commit("SET_HOUSE_LIST", response.data.response.body.items.item);
+          // console.log(response.data);
+          commit("SET_HOUSE_LIST", response.data);
         },
         (error) => {
           console.log(error);

@@ -13,13 +13,13 @@
             ></b-nav-item
           >
           <b-nav-item href="#"
-            ><router-link :to="{ name: 'Board' }" class="link"
+            ><router-link :to="{ name: 'NoticeList' }" class="link"
               ><b-icon icon="journal" font-scale="1"></b-icon>
-              게시판</router-link
+              공지사항</router-link
             ></b-nav-item
           >
           <b-nav-item href="#"
-            ><router-link :to="{ name: 'Instargram' }" class="link"
+            ><router-link :to="{ name: 'QuestionList' }" class="link"
               ><b-icon icon="question-octagon-fill" font-scale="1"></b-icon>
               Q&A</router-link
             ></b-nav-item

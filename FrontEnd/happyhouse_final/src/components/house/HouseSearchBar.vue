@@ -36,16 +36,15 @@ export default {
       sidoCode: null,
       gugunCode: null,
       dongCode: null,
+      map: null,
     };
   },
   computed: {
     ...mapState(houseStore, ["sidos", "guguns", "dongs"]),
-    // sidos() {
-    //   return this.$store.state.sidos;
-    // },
   },
   created() {
     this.CLEAR_SIDO_LIST();
+    this.CLEAR_HOUSE_LIST();
     this.getSido();
   },
   methods: {
@@ -59,9 +58,9 @@ export default {
       "CLEAR_SIDO_LIST",
       "CLEAR_GUGUN_LIST",
       "CLEAR_DONG_LIST",
+      "CLEAR_HOUSE_LIST",
     ]),
     gugunList() {
-      // console.log(this.sidoCode);
       this.CLEAR_GUGUN_LIST();
       this.gugunCode = null;
       if (this.sidoCode) this.getGugun(this.sidoCode);

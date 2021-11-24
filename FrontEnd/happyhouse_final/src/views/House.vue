@@ -12,7 +12,7 @@
           <house-list />
         </b-col>
         <b-col cols="6">
-          <!-- <house-detail /> -->
+          <house-map />
         </b-col>
       </b-row>
     </b-container>
@@ -21,14 +21,14 @@
 <script>
 import HouseSearchBar from "@/components/house/HouseSearchBar.vue";
 import HouseList from "@/components/house/HouseList.vue";
-// import HouseDetail from "@/components/house/HouseDetail.vue";
+import HouseMap from "@/components/house/HouseMap.vue";
 
 export default {
   name: "House",
   components: {
     HouseSearchBar,
     HouseList,
-    // HouseDetail,
+    HouseMap,
   },
 };
 </script>
