@@ -1,7 +1,10 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import createPersistedState from "vuex-persistedstate";
+import { BootstrapVue, BootstrapVueIcons } from "bootstrap-vue";
 
+Vue.use(BootstrapVue);
+Vue.use(BootstrapVueIcons);
 Vue.use(Vuex);
 
 import memberStore from "@/store/modules/memberStore.js";

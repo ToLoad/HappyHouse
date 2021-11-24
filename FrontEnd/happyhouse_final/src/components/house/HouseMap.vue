@@ -6,7 +6,8 @@
         :key="idx"
         :pressed.sync="btn.state"
         :id="btn.id"
-        variant="secondary"
+        variant="info"
+        aria-hidden="true"
         @click="clickCategory(btn.id, btn.state)"
       >
         {{ btn.caption }}
