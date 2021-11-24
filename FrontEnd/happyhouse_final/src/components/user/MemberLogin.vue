@@ -13,7 +13,10 @@
             <b-alert show variant="danger" v-if="isLoginError"
               >아이디 또는 비밀번호를 확인하세요.</b-alert
             >
-            <b-form-group label-for="userid">
+            <b-input-group label-for="userid">
+              <b-input-group-prepend is-text>
+                <b-icon icon="person-fill"></b-icon>
+              </b-input-group-prepend>
               <b-form-input
                 id="userid"
                 v-model="user.userid"
@@ -21,8 +24,12 @@
                 placeholder="아이디 입력...."
                 @keyup.enter="confirm"
               ></b-form-input>
-            </b-form-group>
-            <b-form-group label-for="password">
+            </b-input-group>
+            <br />
+            <b-input-group label-for="password">
+              <b-input-group-prepend is-text>
+                <b-icon icon="key-fill"></b-icon>
+              </b-input-group-prepend>
               <b-form-input
                 type="password"
                 id="password"
@@ -31,21 +38,23 @@
                 placeholder="비밀번호 입력...."
                 @keyup.enter="confirm"
               ></b-form-input>
-            </b-form-group>
-            <b-button
-              type="button"
-              variant="primary"
-              class="m-1"
-              @click="confirm"
-              >로그인</b-button
-            >
-            <b-button
-              type="button"
-              variant="success"
-              class="m-1"
-              @click="movePage"
-              >회원가입</b-button
-            >
+            </b-input-group>
+            <div class="text-center">
+              <b-button
+                type="button"
+                variant="primary"
+                class="m-1"
+                @click="confirm"
+                >로그인</b-button
+              >
+              <b-button
+                type="button"
+                variant="success"
+                class="m-1"
+                @click="movePage"
+                >회원가입</b-button
+              >
+            </div>
           </b-form>
         </b-card>
       </b-col>

@@ -2,12 +2,7 @@
   <b-row class="mb-1">
     <b-col style="text-align: left">
       <b-form @submit="onSubmit" @reset="onReset">
-        <b-form-group
-          id="userid-group"
-          label="작성자:"
-          label-for="writer_id"
-          description="작성자를 입력하세요."
-        >
+        <b-form-group id="userid-group" label="작성자:" label-for="writer_id">
           <b-form-input
             id="writer_id"
             :disabled="isUserid"
@@ -68,12 +63,12 @@ export default {
     return {
       article: {
         num: 0,
-        writer_id: "",
+        writer_id: "admin",
         title: "",
         content: "",
         write_time: "",
       },
-      isUserid: false,
+      isUserid: true,
     };
   },
   props: {

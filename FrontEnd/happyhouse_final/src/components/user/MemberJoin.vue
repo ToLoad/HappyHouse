@@ -10,7 +10,10 @@
       <b-col cols="8">
         <b-card class="text-center mt-3" style="max-width: 40rem" align="left">
           <b-form class="text-left">
-            <b-form-group label-for="username">
+            <b-input-group label-for="username">
+              <b-input-group-prepend is-text>
+                <b-icon icon="person-circle"></b-icon>
+              </b-input-group-prepend>
               <b-form-input
                 id="username"
                 v-model="user.username"
@@ -19,20 +22,26 @@
                 placeholder="이름을 입력해주세요"
                 @keyup.enter="confirm"
               ></b-form-input>
-            </b-form-group>
+            </b-input-group>
             <br />
-            <b-form-group label-for="userid">
+            <b-input-group label-for="userid">
+              <b-input-group-prepend is-text>
+                <b-icon icon="person-fill"></b-icon>
+              </b-input-group-prepend>
               <b-form-input
                 id="userid"
                 v-model="user.userid"
                 required
                 ref="userid"
-                placeholder="아이디 입력을 입력해주세요"
+                placeholder="아이디를 입력해주세요"
                 @keyup.enter="confirm"
               ></b-form-input>
-            </b-form-group>
+            </b-input-group>
             <br />
-            <b-form-group label-for="userpwd">
+            <b-input-group label-for="userpwd">
+              <b-input-group-prepend is-text>
+                <b-icon icon="key-fill"></b-icon>
+              </b-input-group-prepend>
               <b-form-input
                 type="password"
                 id="password"
@@ -42,37 +51,45 @@
                 placeholder="비밀번호를 입력해주세요"
                 @keyup.enter="confirm"
               ></b-form-input>
-            </b-form-group>
+            </b-input-group>
             <br />
-            <b-form-group label-for="email">
+            <b-input-group label-for="email">
+              <b-input-group-prepend is-text>
+                <b-icon icon="envelope"></b-icon>
+              </b-input-group-prepend>
               <b-form-input
                 id="email"
                 v-model="user.email"
                 required
                 ref="email"
-                placeholder="이메일을 입력입력해주세요"
+                placeholder="이메일을 입력해주세요"
                 @keyup.enter="confirm"
               ></b-form-input>
-            </b-form-group>
+            </b-input-group>
             <br />
-            <b-form-group label-for="phone_num">
+            <b-input-group label-for="phone_num">
+              <b-input-group-prepend is-text>
+                <b-icon icon="telephone-fill"></b-icon>
+              </b-input-group-prepend>
               <b-form-input
                 id="phone_num"
                 v-model="user.phone_num"
                 required
                 ref="phone_num"
-                placeholder="전화번호를 입력입력해주세요"
+                placeholder="전화번호를 입력해주세요"
                 @keyup.enter="confirm"
               ></b-form-input>
-            </b-form-group>
+            </b-input-group>
             <br />
-            <b-button
-              type="button"
-              variant="success"
-              class="m-1"
-              @click="signupBtn"
-              >회원가입</b-button
-            >
+            <div class="text-center">
+              <b-button
+                type="button"
+                variant="success"
+                class="m-1"
+                @click="signupBtn"
+                >회원가입</b-button
+              >
+            </div>
           </b-form>
         </b-card>
       </b-col>
