@@ -50,7 +50,9 @@
         >층수 : {{ house.floor }} 층</b-alert
       >
       <div class="text-center">
-        <b-button pill variant="outline-danger">찜하기</b-button>
+        <b-button @click="clickWishlist" pill variant="outline-danger"
+          >찜하기</b-button
+        >
       </div>
     </b-modal>
   </b-row>
@@ -58,8 +60,11 @@
 
 <script>
 import { mapActions } from "vuex";
+import { mapState } from "vuex";
+import { writeWish } from "@/api/wishlist.js";
 
 const houseStore = "houseStore";
+const memberStore = "memberStore";
 
 export default {
   name: "HouseListRow",
@@ -71,6 +76,9 @@ export default {
   props: {
     house: Object,
   },
+  computed: {
+    ...mapState(memberStore, ["userInfo"]),
+  },
   methods: {
     ...mapActions(houseStore, ["detailHouse"]),
     selectHouse() {
@@ -80,6 +88,17 @@ export default {
     },
     colorChange(flag) {
       this.isColor = flag;
+    },
+    clickWishlist() {
+      writeWish(
+        { userid: this.userInfo.userid, apt_no: this.house.no },
+        (response) => {
+          console.log(response);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
     },
   },
 };
