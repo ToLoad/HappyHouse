@@ -82,7 +82,11 @@
           </td>
         </tr>
       </table>
-      <b-button @click="onSubmit" variant="primary" href="#">수정하기</b-button
+      <b-button @click="onSubmit" pill variant="primary" href="#"
+        >수정하기</b-button
+      >&nbsp;
+      <router-link :to="{ name: 'MyPage' }" class="link">
+        <b-button variant="danger" pill>취소</b-button> </router-link
       ><br /><br />
       <router-link :to="{ name: 'Home' }">홈으로</router-link>
     </b-jumbotron>
