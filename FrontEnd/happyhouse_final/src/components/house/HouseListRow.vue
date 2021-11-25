@@ -19,9 +19,11 @@
     <b-modal
       :id="`modal-${house.no}`"
       :title="`${house.aptName} 상세정보`"
+      hide-footer
       size="lg"
     >
       <b-img
+        class="mb-5"
         center
         rounded
         width="500"
@@ -29,27 +31,59 @@
         :src="require(`@/assets/aptimg/${house.img}`)"
         :alt="`${house.img}`"
       ></b-img>
-      <b-alert show variant="secondary" class="mt-3 text-center"
-        >아파트 식별번호 : {{ house.no }}</b-alert
+      <b-card
+        border-variant="dark"
+        :header="`${house.aptName}`"
+        header-bg-variant="info"
+        header-text-variant="white"
+        align="center"
       >
-      <b-alert show variant="warning" class="text-center"
-        >주소 : {{ house.sidoName }} {{ house.gugunName }} {{ house.dongName }}
-        {{ house.jibun }}</b-alert
-      >
-      <b-alert show variant="danger" class="mt-3 text-center"
-        >건축연도 : {{ house.dealYear }}년 {{ house.dealMonth }}월
-        {{ house.dealDay }}일</b-alert
-      >
-      <b-alert show variant="info" class="mt-3 text-center"
-        >최근 거래가격 : {{ house.recentPrice }} 만원</b-alert
-      >
-      <b-alert show variant="info" class="mt-3 text-center"
-        >크기 : {{ house.area }} m2</b-alert
-      >
-      <b-alert show variant="info" class="mt-3 text-center"
-        >층수 : {{ house.floor }} 층</b-alert
-      >
-      <div class="text-center">
+        <b-table-simple small stacked>
+          <colgroup>
+            <col />
+            <col />
+          </colgroup>
+          <colgroup>
+            <col />
+            <col />
+            <col />
+          </colgroup>
+          <colgroup>
+            <col />
+            <col />
+          </colgroup>
+          <b-thead head-variant="dark">
+            <b-tr>
+              <b-th>아파트 식별번호</b-th>
+              <b-th>주소</b-th>
+              <b-th>건축연도</b-th>
+              <b-th>최근 거래가격</b-th>
+              <b-th>크기</b-th>
+              <b-th>층수</b-th>
+            </b-tr>
+          </b-thead>
+          <b-tbody>
+            <b-tr>
+              <b-th rowspan="3" class="text-center">상세 정보</b-th>
+              <b-th stacked-heading="아파트 식별번호">{{ house.no }}</b-th>
+              <b-td stacked-heading="주소" variant="success"
+                >{{ house.sidoName }} {{ house.gugunName }}
+                {{ house.dongName }} {{ house.jibun }}</b-td
+              >
+              <b-td stacked-heading="건축연도"
+                >{{ house.dealYear }}년 {{ house.dealMonth }}월
+                {{ house.dealDay }}일</b-td
+              >
+              <b-td stacked-heading="최근 거래가격"
+                >{{ house.recentPrice }} 만원</b-td
+              >
+              <b-td stacked-heading="크기">{{ house.area }} m2</b-td>
+              <b-td stacked-heading="층수">{{ house.floor }} 층</b-td>
+            </b-tr>
+          </b-tbody>
+        </b-table-simple>
+      </b-card>
+      <div class="text-center mt-2">
         <b-button
           @click="clickWishlist"
           pill
