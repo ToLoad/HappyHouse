@@ -2,6 +2,7 @@
   <div id="app">
     <navi-bar />
     <router-view />
+    <div class="mb-5"></div>
     <Footer />
   </div>
 </template>

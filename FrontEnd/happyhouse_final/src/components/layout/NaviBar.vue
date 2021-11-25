@@ -1,6 +1,6 @@
 <template>
   <div id="temp">
-    <b-navbar toggleable="lg" type="dark" variant="dark" fixed="top">
+    <b-navbar toggleable="lg" fixed="top">
       <b-navbar-brand href="#">
         <router-link to="/">
           <img
@@ -23,7 +23,7 @@
               style="
                 font-family: 'SDSamliphopangche_Outline';
                 font-size: 17pt;
-                color: floralwhite;
+                color: black;
               "
               >HOME</router-link
             ></b-nav-item
@@ -35,7 +35,7 @@
               style="
                 font-family: 'SDSamliphopangche_Outline';
                 font-size: 17pt;
-                color: floralwhite;
+                color: black;
               "
             >
               공지사항</router-link
@@ -48,7 +48,7 @@
               style="
                 font-family: 'SDSamliphopangche_Outline';
                 font-size: 17pt;
-                color: floralwhite;
+                color: black;
               "
             >
               Q&A</router-link
@@ -61,7 +61,7 @@
               style="
                 font-family: 'SDSamliphopangche_Outline';
                 font-size: 17pt;
-                color: floralwhite;
+                color: black;
               "
             >
               아파트정보</router-link
@@ -72,9 +72,9 @@
         <b-navbar-nav class="ml-auto" v-if="userInfo">
           <b-nav-item
             class="align-self-center"
-            style="font-family: 'twayair'; font-size: 13pt; color: floralwhite"
+            style="font-family: 'twayair'; font-size: 13pt; color: black"
             ><b-avatar
-              variant="primary"
+              variant="info"
               v-text="userInfo ? userInfo.userid.charAt(0).toUpperCase() : ''"
             ></b-avatar
             >&nbsp; {{ userInfo.username }}({{ userInfo.userid }})님
@@ -90,7 +90,7 @@
           >
           <b-nav-item
             class="link align-self-center"
-            style="font-family: 'twayair'; font-size: 13pt; color: floralwhite"
+            style="font-family: 'twayair'; font-size: 13pt; color: gray"
             @click.prevent="onClickLogout"
             >로그아웃</b-nav-item
           >
@@ -144,4 +144,9 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.navbar {
+  background-color: #ffefd5;
+  border-bottom: 2px solid black;
+}
+</style>
