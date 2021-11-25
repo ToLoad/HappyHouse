@@ -2,9 +2,13 @@
   <div>
     <br />
     <hr />
-    <div
-      v-if="myPageList.userid === undefined || myPageList.userid === ''"
-    ></div>
+    <div v-if="myPageList.userid === undefined || myPageList.userid === ''">
+      <img
+        src="@/assets/로그인.png"
+        alt="로그인 시 추천매물 볼 수 있습니다"
+        style="width: 950px"
+      />
+    </div>
     <div
       class="container"
       v-else

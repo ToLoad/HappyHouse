@@ -5,6 +5,7 @@ import Home from "../views/Home.vue";
 import Member from "@/views/Member.vue";
 import MemberJoin from "@/components/user/MemberJoin.vue";
 import MemberLogin from "@/components/user/MemberLogin.vue";
+import MemberFindpw from "@/components/user/MemberFindpw.vue";
 import MyPage from "@/components/user/MyPage.vue";
 import MyPageUpdate from "@/components/user/MyPageUpdate.vue";
 
@@ -73,6 +74,11 @@ const routes = [
         name: "MyPageUpdate",
         beforeEnter: onlyAuthUser,
         component: MyPageUpdate,
+      },
+      {
+        path: "findpw",
+        name: "FindPw",
+        component: MemberFindpw,
       },
     ],
   },

@@ -19,6 +19,13 @@ async function findById(userid, success, fail) {
   await api.get(`/user/info/${userid}`).then(success).catch(fail);
 }
 
+async function findPw(user, success, fail) {
+  await api
+    .post("/user/password", JSON.stringify(user))
+    .then(success)
+    .catch(fail);
+}
+
 // function logout(success, fail)
 
-export { login, signup, findById, update };
+export { login, signup, findById, update, findPw };

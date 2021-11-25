@@ -4,7 +4,7 @@
     <b-jumbotron style="background: white">
       <template #header>
         <div style="font-family: 'twayair'">
-          로그인
+          비밀번호 찾기
           <img
             src="https://img.icons8.com/external-bearicons-flat-bearicons/128/000000/external-Welcome-miscellany-texts-and-badges-bearicons-flat-bearicons.png"
           />
@@ -19,9 +19,23 @@
             align="left"
           >
             <b-form class="text-left">
-              <b-alert show variant="danger" v-if="isLoginError"
+              <!-- <b-alert show variant="danger" v-if="isLoginError"
                 >아이디 또는 비밀번호를 확인하세요.</b-alert
-              >
+              > -->
+              <b-input-group label-for="username">
+                <b-input-group-prepend is-text>
+                  <b-icon icon="person-circle"></b-icon>
+                </b-input-group-prepend>
+                <b-form-input
+                  id="username"
+                  v-model="user.username"
+                  required
+                  ref="username"
+                  placeholder="이름 입력...."
+                  @keyup.enter="confirm"
+                ></b-form-input>
+              </b-input-group>
+              <br />
               <b-input-group label-for="userid">
                 <b-input-group-prepend is-text>
                   <b-icon icon="person-fill"></b-icon>
@@ -30,21 +44,22 @@
                   id="userid"
                   v-model="user.userid"
                   required
+                  ref="userid"
                   placeholder="아이디 입력...."
                   @keyup.enter="confirm"
                 ></b-form-input>
               </b-input-group>
               <br />
-              <b-input-group label-for="password">
+              <b-input-group label-for="email">
                 <b-input-group-prepend is-text>
-                  <b-icon icon="key-fill"></b-icon>
+                  <b-icon icon="envelope"></b-icon>
                 </b-input-group-prepend>
                 <b-form-input
-                  type="password"
-                  id="password"
-                  v-model="user.password"
+                  id="email"
+                  v-model="user.email"
+                  ref="email"
                   required
-                  placeholder="비밀번호 입력...."
+                  placeholder="이메일 입력...."
                   @keyup.enter="confirm"
                 ></b-form-input>
               </b-input-group>
@@ -54,25 +69,17 @@
                   type="button"
                   variant="primary"
                   class="m-1"
-                  @click="confirm"
+                  @click="find"
                   style="font-family: 'twayair'"
-                  >로그인</b-button
+                  >찾기</b-button
                 >
                 <b-button
                   type="button"
-                  variant="warning"
+                  variant="danger"
                   class="m-1"
-                  style="font-family: 'twayair'"
-                  @click="moveFindpw"
-                  >비밀번호 찾기</b-button
-                >
-                <b-button
-                  type="button"
-                  variant="success"
-                  class="m-1"
-                  style="font-family: 'twayair'"
                   @click="movePage"
-                  >회원가입</b-button
+                  style="font-family: 'twayair'"
+                  >취소</b-button
                 >
               </div>
             </b-form>
@@ -81,48 +88,58 @@
         <b-col></b-col>
       </b-row>
     </b-jumbotron>
-    <img
-      src="@/assets/로그인.png"
-      alt="로그인 시 추천매물 볼 수 있습니다"
-      style="width: 950px"
-    />
-    <br /><br />
   </b-container>
 </template>
 
 <script>
-import { mapState, mapActions } from "vuex";
-
-const memberStore = "memberStore";
+import { findPw } from "../../api/member";
 
 export default {
-  name: "MemberLogin",
+  name: "MemberFindpw",
   data() {
     return {
       user: {
+        username: null,
         userid: null,
         password: null,
       },
     };
   },
-  computed: {
-    ...mapState(memberStore, ["isLogin", "isLoginError"]),
-  },
+  computed: {},
   methods: {
-    ...mapActions(memberStore, ["userConfirm", "getUserInfo"]),
-    async confirm() {
-      await this.userConfirm(this.user);
-      let token = sessionStorage.getItem("access-token");
-      if (this.isLogin) {
-        await this.getUserInfo(token);
-        this.$router.push({ name: "Home" });
-      }
+    find(event) {
+      event.preventDefault();
+      let err = true;
+      let msg = "에러";
+      !this.user.username &&
+        ((msg = "이름을 입력해주세요"),
+        (err = false),
+        this.$refs.username.focus());
+      err &&
+        !this.user.userid &&
+        ((msg = "아이디를 입력해주세요"),
+        (err = false),
+        this.$refs.userid.focus());
+      err &&
+        !this.user.email &&
+        ((msg = "이메일을 입력해주세요"),
+        (err = false),
+        this.$refs.email.focus());
+      if (!err) alert(msg);
+      else
+        findPw(
+          this.user,
+          (response) => {
+            alert("비밀번호는 : " + response.data.password + " 입니다.");
+            this.movePage();
+          },
+          (error) => {
+            console.log(error);
+          }
+        );
     },
     movePage() {
-      this.$router.push({ name: "SignUp" });
-    },
-    moveFindpw() {
-      this.$router.push({ name: "FindPw" });
+      this.$router.push({ name: "SignIn" });
     },
   },
 };
