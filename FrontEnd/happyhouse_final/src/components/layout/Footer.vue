@@ -5,8 +5,8 @@
       <div>E-mail : happyhouse@happyhouse.com</div>
       <br />
       <div>
-        ⓒCopyright 2021-2021 by 팀명. All Rights Reserved. HappyHouse is Powered
-        by Vue.js
+        ⓒCopyright 2021-2021 by 집 없는 중개업자. All Rights Reserved.
+        HappyHouse is Powered by Vue.js
       </div>
     </div>
     <strong class="mr-auto">@안영원 @최윤희</strong>
