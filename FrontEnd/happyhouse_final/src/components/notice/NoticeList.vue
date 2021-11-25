@@ -1,7 +1,10 @@
 <template>
   <b-container class="bv-example-row mt-3">
+    <br /><br /><br />
+    <img src="@/assets/notice_logo.png" alt="위시리스트" />
     <b-row class="mb-1">
       <b-col class="text-right" v-if="myPageList.userid === 'admin'">
+        <br />
         <b-button variant="outline-primary" @click="moveWrite()"
           >글쓰기</b-button
         >
@@ -10,7 +13,10 @@
     <b-row>
       <b-col v-if="articles.length">
         <b-table-simple hover responsive>
-          <b-thead head-variant="dark">
+          <b-thead
+            head-variant="dark"
+            style="font-family: 'twayair'; font-size: 14.5pt"
+          >
             <b-tr>
               <b-th>글번호</b-th>
               <b-th>제목</b-th>
@@ -22,6 +28,7 @@
           <tbody>
             <!-- 하위 component인 ListRow에 데이터 전달(props) -->
             <notice-list-row
+              style="font-family: 'twayair'; font-size: 13pt"
               v-for="(article, index) in articles"
               :key="index"
               v-bind="article"

@@ -1,7 +1,5 @@
 <template>
-  <b-container class="bv-example-row mt-3 text-center"
-    ><br /><br /><br />
-    <img src="@/assets/notice_logo.png" alt="위시리스트" />
+  <b-container class="bv-example-row mt-3 text-center">
     <router-view></router-view>
   </b-container>
 </template>

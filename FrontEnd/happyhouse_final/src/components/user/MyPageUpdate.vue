@@ -1,14 +1,22 @@
 <template>
   <div>
-    <b-jumbotron>
-      <template #header>My Page 수정</template>
+    <b-jumbotron style="background: oldlace; font-family: 'twayair'">
+      <template #header>
+        <img
+          src="https://img.icons8.com/color-glass/80/000000/spa-flower.png"
+        />
+        My Page 수정
+        <img
+          src="https://img.icons8.com/color-glass/80/000000/spa-flower.png"
+        />
+      </template>
 
       <template #lead> 개인 정보 수정 페이지입니다. </template>
 
       <hr class="my-4" />
       <table class="table table-bordered">
         <tr>
-          <td style="background: powderblue">아이디</td>
+          <td style="background: moccasin">아이디</td>
           <td>
             <input
               type="text"
@@ -22,7 +30,7 @@
           </td>
         </tr>
         <tr>
-          <td style="background: powderblue">이름</td>
+          <td style="background: moccasin">이름</td>
           <td>
             <input
               type="text"
@@ -35,7 +43,7 @@
           </td>
         </tr>
         <tr>
-          <td style="background: powderblue">비밀번호</td>
+          <td style="background: moccasin">비밀번호</td>
           <td>
             <input
               type="text"
@@ -48,7 +56,7 @@
           </td>
         </tr>
         <tr>
-          <td style="background: powderblue">이메일</td>
+          <td style="background: moccasin">이메일</td>
           <td>
             <input
               type="text"
@@ -61,7 +69,7 @@
           </td>
         </tr>
         <tr>
-          <td style="background: powderblue">전화번호</td>
+          <td style="background: moccasin">전화번호</td>
           <td>
             <input
               type="text"

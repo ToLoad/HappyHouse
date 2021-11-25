@@ -7,7 +7,10 @@
     </b-row>
     <b-row class="mb-1">
       <b-col class="text-left">
-        <b-button variant="outline-primary" @click="listQuestion"
+        <b-button
+          variant="outline-primary"
+          @click="listQuestion"
+          style="font-family: 'twayair'"
           >목록</b-button
         >
       </b-col>
@@ -31,17 +34,20 @@
       </b-col>
     </b-row>
     <b-row class="mb-1">
-      <b-col>
+      <b-col style="font-family: 'yg-jalnan'">
         <b-card
           :header-html="`<div style='color: dodgerblue'><h2>${questions.num}. ${questions.title}</h2>
           </div>
-          <div style='float: right'><h6>[ ${questions.writer_id} ] ${questions.write_time}</h6></div>`"
+          <div style='float: right'><h6>[ ${questions.writer_id} ]님 ${questions.write_time}</h6></div>`"
           class="mb-2"
           border-variant="dark"
           no-body
         >
-          <b-card-body class="text-left">
-            <div v-html="message"></div>
+          <b-card-body class="text-center">
+            <div
+              v-html="message"
+              style="background-color: snow; font-size: 14pt"
+            ></div>
           </b-card-body>
         </b-card>
       </b-col>
@@ -54,22 +60,38 @@
         <div class="accordion" role="tablist">
           <b-card no-body class="mb-1">
             <b-card-header header-tag="header" class="p-1" role="tab">
-              <b-button block v-b-toggle.accordion-1 variant="info"
-                >답변</b-button
+              <b-button
+                block
+                v-b-toggle.accordion-1
+                variant="info"
+                style="font-family: 'twayair'; font-size: 15pt"
+                >💛 답변 💛</b-button
               >
             </b-card-header>
             <b-collapse
               id="accordion-1"
               visible
               accordion="my-accordion"
+              style="background-color: snow"
               role="tabpanel"
             >
               <b-card-body>
                 <b-card-text
-                  ><table class="table table-bordered">
+                  ><table
+                    class="table table-bordered"
+                    style="font-family: 'twayair'; font-size: 13pt"
+                  >
                     <tr v-for="(answer, index) in answers" :key="index">
-                      <td>{{ answer.writer_id }} 님</td>
-                      <td v-text="answer.content"></td>
+                      <td style="background-color: mintcream">
+                        {{ answer.writer_id }} 님
+                      </td>
+                      <td
+                        v-text="answer.content"
+                        style="
+                          background-color: white;
+                          font-family: 'IM_Hyemin-Bold';
+                        "
+                      ></td>
                       <td
                         v-if="
                           myPageList.userid === answer.writer_id ||
@@ -79,7 +101,7 @@
                         <div
                           type="button"
                           @click="removeAnswer(answer.num)"
-                          style="font-size: small; color: black"
+                          style="font-size: small; color: tomato"
                         >
                           삭제
                         </div>
@@ -91,7 +113,7 @@
             </b-collapse>
           </b-card>
         </div>
-        <answer-write />
+        <answer-write style="font-family: 'twayair'" />
       </b-col>
     </b-row>
   </b-container>
