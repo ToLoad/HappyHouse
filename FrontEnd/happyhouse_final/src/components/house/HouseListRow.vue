@@ -13,7 +13,7 @@
         :alt="`${house.img}`"
       ></b-img>
     </b-col>
-    <b-col cols="7" class="align-self-center">
+    <b-col cols="7" class="align-self-center" style="font-family: 'yg-jalnan'">
       [{{ house.no }}] {{ house.aptName }} {{ house.floor }}층
     </b-col>
     <b-modal
@@ -53,7 +53,7 @@
             <col />
           </colgroup>
           <b-thead head-variant="dark">
-            <b-tr>
+            <b-tr style="font-family: 'twayair'">
               <b-th>아파트 식별번호</b-th>
               <b-th>주소</b-th>
               <b-th>건축연도</b-th>
@@ -63,7 +63,7 @@
             </b-tr>
           </b-thead>
           <b-tbody>
-            <b-tr>
+            <b-tr style="font-family: 'twayair'">
               <b-th rowspan="3" class="text-center">상세 정보</b-th>
               <b-th stacked-heading="아파트 식별번호">{{ house.no }}</b-th>
               <b-td stacked-heading="주소" variant="success"

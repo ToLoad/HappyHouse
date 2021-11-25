@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="font-family: 'yg-jalnan'">
     <b-carousel
       id="carousel-1"
       v-model="slide"

@@ -2,6 +2,7 @@
   <div>
     <b-button-group size="sm">
       <b-button
+        style="font-family: 'IM_Hyemin-Bold'"
         v-for="(btn, idx) in buttons"
         :key="idx"
         :pressed.sync="btn.state"

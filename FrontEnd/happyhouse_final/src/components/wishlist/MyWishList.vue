@@ -5,6 +5,7 @@
       class="bv-example-row mt-3"
     >
       <wish-list-row
+        style="font-family: 'yg-jalnan'"
         v-for="(house, index) in mylist"
         :key="index"
         :house="house"

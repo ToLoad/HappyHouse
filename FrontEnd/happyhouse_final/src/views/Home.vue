@@ -6,12 +6,12 @@
       <img
         src="https://img.icons8.com/dusk/64/000000/summer.png"
       /> </router-link
-    >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <router-link :to="{ name: 'QuestionList' }">
       <img
         src="https://img.icons8.com/dusk/64/000000/star--v2.png"
       /> </router-link
-    >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <router-link :to="{ name: 'House' }">
       <img src="https://img.icons8.com/dusk/64/000000/bright-moon.png" />
     </router-link>

@@ -11,7 +11,7 @@
       />
     </b-container>
     <b-container v-else class="bv-example-row mt-3">
-      <b-row>
+      <b-row class="text-center" style="font-family: 'IM_Hyemin-Bold'">
         <b-col><b-alert show>주택 목록이 없습니다.</b-alert></b-col>
       </b-row>
     </b-container>
