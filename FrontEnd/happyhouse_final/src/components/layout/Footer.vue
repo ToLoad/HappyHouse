@@ -1,7 +1,7 @@
 <template>
   <footer class="footer">
     <div class="align-items-center px-3 py-2">
-      <strong class="mr-auto">팀명</strong>
+      <strong class="mr-auto">집 없는 중개업자</strong>
       <div>E-mail : happyhouse@happyhouse.com</div>
       <br />
       <div>
