@@ -1,7 +1,10 @@
 <template>
-  <b-container class="bv-example-row mt-3">
+  <b-container class="bv-example-row mt-3" style="font-family: 'twayair'">
+    <br /><br /><br />
+    <img src="@/assets/qna.png" alt="qna" />
     <b-row class="mb-1">
       <b-col class="text-right">
+        <br />
         <b-button variant="outline-primary" @click="moveWrite()"
           >질문등록</b-button
         >
@@ -10,7 +13,7 @@
     <b-row>
       <b-col v-if="questions.length">
         <b-table-simple hover responsive>
-          <b-thead head-variant="dark">
+          <b-thead head-variant="dark" style="font-size: 14.5pt">
             <b-tr>
               <b-th>글번호</b-th>
               <b-th>제목</b-th>
@@ -22,6 +25,7 @@
           <tbody>
             <!-- 하위 component인 ListRow에 데이터 전달(props) -->
             <question-list-row
+              style="font-size: 13pt"
               v-for="(question, index) in questions"
               :key="index"
               v-bind="question"

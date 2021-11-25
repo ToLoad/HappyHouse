@@ -1,9 +1,9 @@
 <template>
-  <b-container class="bv-example-row mt-3">
-    <br />
+  <b-container class="bv-example-row mt-3" style="font-family: 'twayair'">
+    <br /><br /><br /><br />
     <b-row class="mb-1">
       <b-col class="text-left">
-        <b-button variant="outline-primary" @click="listArticle">목록</b-button>
+        <b-button variant="outline-success" @click="listArticle">목록</b-button>
       </b-col>
       <b-col class="text-right" v-if="myPageList.userid === 'admin'">
         <b-button
@@ -19,16 +19,21 @@
       </b-col>
     </b-row>
     <b-row class="mb-1">
-      <b-col>
+      <b-col style="font-family: 'yg-jalnan'">
         <b-card
-          :header-html="`<div style='color: #42b983'><h2>${article.num}. ${article.title}</h2>
+          :header-html="`<div style='color: #42b983'><h1>${article.num}. ${article.title}
+            <img src='https://img.icons8.com/external-tal-revivo-shadow-tal-revivo/40/000000/external-my-location-pin-for-my-maps-gps-check-in-basic-shadow-tal-revivo.png'/>
+          </h1>
           </div>
-          <div style='float: right'><h6>[ ${article.writer_id} ] ${article.write_time}</h6></div>`"
+          <div style='float: right'><h6>작성자 : [ ${article.writer_id} ]님</h6></div>`"
           class="mb-2"
           border-variant="dark"
           no-body
         >
-          <b-card-body class="text-left" style="background-color: lightgray">
+          <b-card-body
+            class="text-center"
+            style="background-color: snow; font-size: 14pt"
+          >
             <div v-html="message"></div>
           </b-card-body>
         </b-card>

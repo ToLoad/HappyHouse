@@ -1,7 +1,5 @@
 <template>
   <b-container class="bv-example-row mt-3 text-center">
-    <br /><br /><br />
-    <img src="@/assets/qna.png" alt="qna" />
     <router-view></router-view>
   </b-container>
 </template>
