@@ -2,10 +2,10 @@
   <b-container class="bv-example-row mt-3">
     <b-row>
       <b-col>
-        <b-alert show><h3>글작성</h3></b-alert>
+        <b-alert show style="font-family: 'twayair'"><h3>글작성</h3></b-alert>
       </b-col>
     </b-row>
-    <question-write-form type="register" />
+    <question-write-form type="register" style="font-family: 'twayair'" />
   </b-container>
 </template>
 
