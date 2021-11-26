@@ -17,6 +17,7 @@
 	<select id="listAnswer" parameterType="int" resultType="answerDto">
 		select * from answer
 		where question_num = #{question_num}
+		order by num desc
 	</select>
 	
 	<update id="updateAnswer" parameterType="answerDto">

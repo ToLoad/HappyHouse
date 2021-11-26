@@ -16,10 +16,11 @@
 	
 	<select id="listQuestion" parameterType="questionParamDto" resultType="questionDto">
 		select * from question
+		order by num desc
 		<if test="word != null and word != ''">
 			where ${key} like concat('%', #{word}, '%')
 		</if>
-		limit #{start}, #{spp}
+		limit #{start}, #{spp}	
 	</select>
 	
 	<update id="updateQuestion" parameterType="questionDto">

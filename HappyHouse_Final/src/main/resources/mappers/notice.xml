@@ -16,10 +16,11 @@
 	
 	<select id="listNotice" parameterType="noticeParamDto" resultType="noticeDto">
 		select * from notice
+		order by num desc
 		<if test="word != null and word != ''">
 			where ${key} like concat('%', #{word}, '%')
 		</if>
-		limit #{start}, #{spp}
+		limit #{start}, #{spp}	
 	</select>
 	
 	<update id="updateNotice" parameterType="noticeDto">
