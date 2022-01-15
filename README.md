@@ -1,4 +1,4 @@
-# HappyHouse_Final
+[![Typing SVG](https://readme-typing-svg.herokuapp.com?color=%2336BCF7&center=true&vCenter=true&lines=HappyHouse+Final)](https://git.io/typing-svg)
 
 ## 개요
 SSAFY 1학기 최종프로젝트, 내 집 마련에 도움을 주는 부동산 사이트
