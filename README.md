@@ -57,7 +57,7 @@ https://youtu.be/9RfEC2mGzTg
 하단에 위와 같이 추천 매물이 생성  
   
 ## 주변 상권 보기
-![아파트페이지](./img/aptpage.png)
+![아파트페이지](./img/aptpage.png)  
 해당 페이지 우측에 지도에서 위쪽 버튼을 누르면 해당되는 상권 정보를 아래와 같이 표시  
   
 ![상권정보](./img/near.png)
